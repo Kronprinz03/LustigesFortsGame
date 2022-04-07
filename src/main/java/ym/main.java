@@ -1,7 +1,9 @@
 package ym;
 
+import lombok.Getter;
 import ym.lustigesFortsGame.Controll;
 
+@Getter
 public class main {
     private Controll controll;
 
@@ -11,6 +13,6 @@ public class main {
 
     public main(){
         controll = new Controll();
-
+        controll.creatGame();
     }
 }

@@ -1,10 +1,18 @@
 package ym.lustigesFortsGame.Objekt.Button;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
+
+@Getter
+@Setter
 
 public abstract class ButtonTemplate extends JButton implements MouseListener, MouseMotionListener {
     protected int width;
@@ -16,6 +24,7 @@ public abstract class ButtonTemplate extends JButton implements MouseListener, M
     protected boolean aktive= false;
     protected String name;
     protected int schriftgröße;
+
 
 
     public ButtonTemplate(String name, int x, int y, int width, int height, int schriftgröße, boolean activ) {
@@ -30,7 +39,33 @@ public abstract class ButtonTemplate extends JButton implements MouseListener, M
 
 
     abstract void onClick();
-
+    public Graphics draw (Graphics dbg){
+        AffineTransform affinetransform = new AffineTransform();
+        FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
+        Font font;
+        if(isVisible()) {
+            if (!isHover()) {
+                dbg.setColor(Color.white);
+                dbg.fillRect(this.x, this.y, this.width, this.height);
+                dbg.setColor(Color.black);
+                font = new Font("Tahoma", Font.PLAIN, schriftgröße);
+                int textHeight = (int) (font.getStringBounds(name, frc).getHeight()+7); // höhe der SChrift
+                int textwidth = (int) (font.getStringBounds(name, frc).getWidth()); // Breite der Schrift
+                dbg.setFont(font);
+                dbg.drawString(name, (getX() + (getWidth()/2)) - (textwidth / 2), (getY() + (getHeight()/2)) + (textHeight / 2) - 10);
+            } else {
+                dbg.setColor(Color.gray);
+                dbg.fillRect(this.x, this.y, this.width, this.height);
+                dbg.setColor(Color.white);
+                font = new Font("Tahoma", Font.PLAIN, schriftgröße);
+                int textHeight = (int) (font.getStringBounds(name, frc).getHeight()+7); // höhe der SChrift
+                int textwidth = (int) (font.getStringBounds(name, frc).getWidth()); // Breite der Schrift
+                dbg.setFont(font);
+                dbg.drawString(name, (getX() + (getWidth()/2)) - (textwidth / 2), (getY() + (getHeight()/2)) + (textHeight / 2) - 10);
+            }
+        }
+        return dbg;
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {

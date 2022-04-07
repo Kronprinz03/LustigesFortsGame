@@ -2,12 +2,15 @@ package ym.lustigesFortsGame;
 
 import lombok.Getter;
 import lombok.Setter;
+import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.listener.KeyListeners;
 import ym.lustigesFortsGame.utils.Images;
 import ym.lustigesFortsGame.utils.Paths;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 @Getter
 @Setter
@@ -20,18 +23,24 @@ public class GUI extends JFrame implements Runnable {
     private Image dbImage = null;
     private Graphics dbg;
     private Font font;
+    private Controll controll;
+
 
     private Image backGroundImage ;
 
-    public GUI( int SIZEX, int SIZEY) {
+    public GUI( int SIZEX, int SIZEY, Controll controll) {
         this.SIZEX = SIZEX;
         this.SIZEY = SIZEY;
+
+        this.controll = controll;
 
         setTitle(titel);
         //setUndecorated(true);
 
         setSize(new Dimension(SIZEX, SIZEY));
-        addKeyListener(new KeyListeners());
+
+        addListerner();
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -42,7 +51,7 @@ public class GUI extends JFrame implements Runnable {
     }
 
     public void paint(Graphics g){
-
+        System.out.println("GUI");
         if(dbImage == null){
             dbImage = createImage(getSIZEX(),getSIZEY());
             dbg = dbImage.getGraphics();
@@ -57,9 +66,22 @@ public class GUI extends JFrame implements Runnable {
         //Hintergrund
         dbg.drawImage(getBackGroundImage(), 0, 0, null);
 
+
+        dbg =  controll.getInitButtons().getLokalButton().draw(dbg);
+
+
+
         g.drawImage(dbImage,0,0,this);
     }
 
+    public void addListerner(){
+        addKeyListener(new KeyListeners());
+        for (ButtonTemplate button : controll.getInitButtons().getButtons()){
+            addMouseMotionListener(button);
+            addMouseListener(button);
+        }
+
+    }
 
     @Override
     public void run() {
