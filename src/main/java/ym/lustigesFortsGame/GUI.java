@@ -5,12 +5,9 @@ import lombok.Setter;
 import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.listener.KeyListeners;
 import ym.lustigesFortsGame.utils.Images;
-import ym.lustigesFortsGame.utils.Paths;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 @Getter
 @Setter
@@ -25,6 +22,8 @@ public class GUI extends JFrame implements Runnable {
     private Font font;
     private Controll controll;
 
+    private boolean ingame = false;
+
 
     private Image backGroundImage ;
 
@@ -33,6 +32,7 @@ public class GUI extends JFrame implements Runnable {
         this.SIZEY = SIZEY;
 
         this.controll = controll;
+        setUndecorated(true);
 
         setTitle(titel);
         //setUndecorated(true);
@@ -51,7 +51,6 @@ public class GUI extends JFrame implements Runnable {
     }
 
     public void paint(Graphics g){
-        System.out.println("GUI");
         if(dbImage == null){
             dbImage = createImage(getSIZEX(),getSIZEY());
             dbg = dbImage.getGraphics();
@@ -59,15 +58,31 @@ public class GUI extends JFrame implements Runnable {
             backGroundImage = Images.getBackGroundImage();
 
         }
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF); // Keine Ahnung mit Funktionierts
-        Toolkit.getDefaultToolkit().sync();
+        //---------------------------Start---------------------------
+        if(!ingame) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF); // Keine Ahnung mit Funktionierts
+            Toolkit.getDefaultToolkit().sync();
 
-        //Hintergrund
-        dbg.drawImage(getBackGroundImage(), 0, 0, null);
+            //Hintergrund
+            dbg.drawImage(getBackGroundImage(), 0, 0, null);
+
+            for (ButtonTemplate button : controll.getInitButtons().getStartbuttons()) {
+                dbg = button.draw(dbg);
+            }
+        }
+        //--------------------INGAME--------------------------
+        if(ingame){
+            dbg.drawImage(getBackGroundImage(), 0, 0, null);
+            dbg = controll.getSpieler1().draw(dbg);
 
 
-        dbg =  controll.getInitButtons().getLokalButton().draw(dbg);
+
+
+        }
+
+
+
 
 
 
@@ -75,8 +90,8 @@ public class GUI extends JFrame implements Runnable {
     }
 
     public void addListerner(){
-        addKeyListener(new KeyListeners());
-        for (ButtonTemplate button : controll.getInitButtons().getButtons()){
+        addKeyListener(new KeyListeners(controll));
+        for (ButtonTemplate button : controll.getInitButtons().getStartbuttons()){
             addMouseMotionListener(button);
             addMouseListener(button);
         }

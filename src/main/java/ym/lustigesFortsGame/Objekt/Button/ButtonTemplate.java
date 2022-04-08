@@ -43,7 +43,7 @@ public abstract class ButtonTemplate extends JButton implements MouseListener, M
         AffineTransform affinetransform = new AffineTransform();
         FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
         Font font;
-        if(isVisible()) {
+        if(isAktive()) {
             if (!isHover()) {
                 dbg.setColor(Color.white);
                 dbg.fillRect(this.x, this.y, this.width, this.height);
