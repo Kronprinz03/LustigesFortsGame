@@ -74,6 +74,9 @@ public class GUI extends JFrame implements Runnable {
         //--------------------INGAME--------------------------
         if(ingame){
             dbg.drawImage(getBackGroundImage(), 0, 0, null);
+            dbg.setColor(Color.black);
+            dbg.fillRect(0,0,getSIZEX(),getSIZEY());
+            dbg.setColor(Color.white);
             dbg = controll.getSpieler1().draw(dbg);
 
 

@@ -1,6 +1,17 @@
 package ym.lustigesFortsGame.Objekt;
 
+import lombok.Getter;
+import lombok.Setter;
+import ym.lustigesFortsGame.enums.Direaction;
+import ym.lustigesFortsGame.enums.Movment;
+import ym.lustigesFortsGame.utils.Images;
+
 import java.awt.*;
+
+
+
+@Getter
+@Setter
 
 public class Player {
     //Positionen
@@ -10,9 +21,9 @@ public class Player {
     private int width;
     private int height;
 
-
-
-
+    //Enum
+    private Direaction direaction = Direaction.unten;
+    private Movment movment = Movment.stop;
 
 
     public Player(int posX, int posY, int width, int height) {
@@ -23,7 +34,21 @@ public class Player {
     }
 
     public Graphics draw (Graphics dbg){
-        dbg.fillRect(posX, posY, width, height);
+
+
+
+        if(getDireaction() == Direaction.oben){
+          dbg.drawImage(Images.getOben1(), getPosX(),getPosY(),null);
+        }
+        if(getDireaction() == Direaction.unten){
+            dbg.drawImage(Images.getUnten1(), getPosX(),getPosY(),null);
+        }
+        if(getDireaction() == Direaction.rechts){
+            dbg.drawImage(Images.getRechts1(), getPosX(),getPosY(),null);
+        }
+        if(getDireaction() == Direaction.links){
+            dbg.drawImage(Images.getLinks1(), getPosX(),getPosY(),null);
+        }
 
         return dbg;
     }
