@@ -17,6 +17,18 @@ public class Images {
     private static Image links1 =getSizedImage(Paths.plinks1,20,40);
 
 
+
+    private static Image unten2 =getSizedImage(Paths.punten2,20,40);
+    private static Image oben2 =getSizedImage(Paths.poben2,20,40);
+    private static Image rechts2 =getSizedImage(Paths.prechts2,20,40);
+    private static Image links2 =getSizedImage(Paths.plinks2,20,40);
+
+    private static Image unten3 =getSizedImage(Paths.punten3,20,40);
+    private static Image oben3 =getSizedImage(Paths.poben3,20,40);
+    private static Image rechts3 =getSizedImage(Paths.prechts3,20,40);
+    private static Image links3 =getSizedImage(Paths.plinks3,20,40);
+
+
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
         Image changedImage = null; // Image smalling
         try {
@@ -26,6 +38,38 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getUnten2() {
+        return unten2;
+    }
+
+    public static Image getOben2() {
+        return oben2;
+    }
+
+    public static Image getRechts2() {
+        return rechts2;
+    }
+
+    public static Image getLinks2() {
+        return links2;
+    }
+
+    public static Image getUnten3() {
+        return unten3;
+    }
+
+    public static Image getOben3() {
+        return oben3;
+    }
+
+    public static Image getRechts3() {
+        return rechts3;
+    }
+
+    public static Image getLinks3() {
+        return links3;
     }
 
     public static Image getOben1() {

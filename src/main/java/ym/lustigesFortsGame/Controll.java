@@ -2,6 +2,7 @@ package ym.lustigesFortsGame;
 
 import lombok.Getter;
 import lombok.Setter;
+import ym.lustigesFortsGame.Clocks.AnimationClock;
 import ym.lustigesFortsGame.Clocks.MoveClock;
 import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.Objekt.Button.InitButtons;
@@ -16,7 +17,10 @@ public class Controll {
 private GUI gui;
 private InitButtons initButtons;
 private Player spieler1;
+
+//Clocks
 private MoveClock moveClock;
+private AnimationClock animationClock;
 
 //Variblen
 private int sizeX = 1250;
@@ -38,6 +42,7 @@ private boolean pause = false;
         initButtons = new InitButtons(sizeX,sizeY,this);
         spieler1 = new Player(sizeX/2-25/2,sizeY/2+25/2,25,25);
         moveClock = new MoveClock(spieler1);
+        animationClock = new AnimationClock(this);
     }
 
     //Start Einstellungen
@@ -47,6 +52,7 @@ private boolean pause = false;
         }
         getGui().setIngame(true);
         moveClock.start();
+        animationClock.start();
         System.out.println("lets GO");
     }
 
