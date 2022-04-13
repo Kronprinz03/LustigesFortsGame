@@ -16,16 +16,16 @@ private Player spieler1;
     public void run() {
         while (true){
             //-------------Movement Spieler-----------------
-            if(spieler1.getMovment() == Movment.nachlinks){
+            if(spieler1.getMovment() == Movment.nachlinks && isMoveOkay(Movment.nachlinks)){
                 spieler1.setPosX(spieler1.getPosX()-5);
             }
-            if(spieler1.getMovment() == Movment.nachrechts){
+            if(spieler1.getMovment() == Movment.nachrechts&& isMoveOkay(Movment.nachrechts)){
                 spieler1.setPosX(spieler1.getPosX()+5);
             }
-            if(spieler1.getMovment() == Movment.nachoben){
+            if(spieler1.getMovment() == Movment.nachoben&& isMoveOkay(Movment.nachoben)){
                 spieler1.setPosY(spieler1.getPosY()-5);
             }
-            if(spieler1.getMovment() == Movment.nachunten){
+            if(spieler1.getMovment() == Movment.nachunten&& isMoveOkay(Movment.nachunten)){
                 spieler1.setPosY(spieler1.getPosY()+5);
             }
 
@@ -35,5 +35,10 @@ private Player spieler1;
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean isMoveOkay(Movment movment){
+
+        return true;
     }
 }

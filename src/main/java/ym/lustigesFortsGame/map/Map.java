@@ -5,9 +5,9 @@ import ym.lustigesFortsGame.Controll;
 import ym.lustigesFortsGame.utils.Images;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 @Getter
 public class Map {
@@ -29,7 +29,6 @@ public class Map {
         maxXgraphic = 31;
         maxYgraphic = 18;
 
-
         // Interger für die Map
         inputMap = new int[getMaxXgraphic()][getMaxYgraphic()];
         inputOverlay = new int[getMaxXgraphic()][getMaxYgraphic()];
@@ -37,13 +36,19 @@ public class Map {
         //-----------Speicher der Elemente --------------------
         elementeH = new Image[2];
         elementeH[0] = Images.getGrass();
+        elementeH[1] = Images.getDuenger();
 
         elementeV = new Image[5];
         elementeV[0] = null;
+        elementeV[1] = Images.getBaum1();
+        elementeV[2] = Images.getBaum2();
+        elementeV[3] = Images.getBaum3();
+        elementeV[4] = Images.getSteinweg();
 
+
+        //--------------------Lade Map-----------------
         loadMap();
         loadOverlay();
-
 
     }
 
@@ -55,9 +60,12 @@ public class Map {
         int x = 0;
         int y = 0;
 
+
+
         while (countY < getMaxYgraphic() && countX < getMaxXgraphic()) {
             dbg.drawImage(elementeH[inputMap[countX][countY]], x, y, null);
             dbg.drawImage(elementeV[inputOverlay[countX][countY]], x, y, null);
+
             countX++;
             x = x +40;
             if(countX == 31){
@@ -72,68 +80,75 @@ public class Map {
     }
 
 
-    public void loadMap(){
+    public void loadMap() {
+
+
+        //---------------------------------MAP-------------------------
+        File map = new File("src/main/java/ym/lustigesFortsGame/txtmap/Map01.txt");
+        Scanner scan = null;
+        String line;
         try {
-            InputStream map = getClass().getResourceAsStream("src/main/java/ym/lustigesFortsGame/txtmap/map.txt");
-            BufferedReader skr = new BufferedReader(new InputStreamReader(map));
+            scan = new Scanner(map);
+        }catch (Exception e){
+            System.out.println("keine Map gefunden");
+        }
+        int countX = 0;
+        int countY = 0;
+        while (scan.hasNext() && countY < getMaxYgraphic()) {
+            line = scan.nextLine();
 
-
-            int countX = 0;
-            int countY = 0;
-
-            while (countY < getMaxYgraphic() && countX < getMaxXgraphic()) {
-
-                String line = skr.readLine();
-                while (countX < getMaxXgraphic()){
-
-                    String numberString[] = line.split(" ");
-                    int number = Integer.parseInt(numberString[countX]);
-                    inputMap[countX][countY] = number;
-                    countX = countX+1;
-
-                    if(countX == getMaxXgraphic()){
-                        countX = 0;
-                        countY += 1;
-                    }
-
-
-                }
-                skr.close();
+            while (countX < getMaxXgraphic() ) {
+                String numberString[] = line.split(" ");
+                int number = Integer.parseInt(numberString[countX]);
+                inputMap[countX][countY] = number;
+                countX = countX + 1;
             }
 
-        }catch (Exception e){
-
+            if (countX == getMaxXgraphic()) {
+                countX = 0;
+                countY = countY + 1;
+            }
         }
+        scan.close();
     }
 
 
-    public void loadOverlay(){
+    public void loadOverlay()  {
+        // Overlay
+        File overlay = new File("src/main/java/ym/lustigesFortsGame/txtmap/Overlay.txt");
+        Scanner scOverlay = null;
         try {
-            InputStream overlay = getClass().getResourceAsStream("src/main/java/ym/lustigesFortsGame/txtmap/Overlay.txt");
-            BufferedReader skr = new BufferedReader(new InputStreamReader(overlay));
-            int countX = 0;
-            int countY = 0;
-            while (countY < getMaxYgraphic() && countX < getMaxXgraphic()) {
-                String line = skr.readLine();
-
-                while (countX < getMaxXgraphic()){
-
-                    String numberString[] = line.split(" ");
-                    int number = Integer.parseInt(numberString[countX]);
-                    inputOverlay[countX][countY] = number;
-                    countX = countX+1;
-
-                    if(countX == getMaxXgraphic()){
-                        countX = 0;
-                        countY += 1;
-                    }
-                }
-            }
-            skr.close();
-        }catch (Exception e){
+             scOverlay = new Scanner(overlay);
+        }catch ( Exception e){
+            System.out.println("kein Overlay gefunden");
         }
 
+
+
+
+        int countX = 0;
+        int countY = 0;
+        String line;
+
+        while (scOverlay.hasNext() && countY < getMaxYgraphic()) {
+            line = scOverlay.nextLine();
+
+
+            while (countX < getMaxXgraphic()) {
+                String numberString[] = line.split(" ");
+                int number = Integer.parseInt(numberString[countX]);
+                inputOverlay[countX][countY] = number;
+                countX = countX + 1;
+            }
+
+            if (countX == getMaxXgraphic()) {
+                countX = 0;
+                countY = countY + 1;
+            }
+
+        }
+
+        scOverlay.close();
+
     }
-
-
 }

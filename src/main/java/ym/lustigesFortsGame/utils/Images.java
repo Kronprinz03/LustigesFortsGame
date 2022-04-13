@@ -11,10 +11,10 @@ public class Images {
 @Getter
     private static Image backGroundImage = getSizedImage(Paths.hintergrund,1280,768 );
 
-    private static Image grass = getSizedImage(Paths.pgrass,40,40);
 
 
 
+    //-----------------------Spieler-------------------------
     private static Image unten1 =getSizedImage(Paths.punten1,20,40);
     private static Image oben1 =getSizedImage(Paths.poben1,20,40);
     private static Image rechts1 =getSizedImage(Paths.prechts1,20,40);
@@ -30,6 +30,16 @@ public class Images {
     private static Image rechts3 =getSizedImage(Paths.prechts3,20,40);
     private static Image links3 =getSizedImage(Paths.plinks3,20,40);
 
+    //-------------------------------Map-------------------------------
+    private static Image grass = getSizedImage(Paths.pgrass,40,40);
+    private static Image duenger = getSizedImage(Paths.pduenger,40,40);
+
+    private static Image baum1 = getSizedImage(Paths.pbaum1,40,40);
+    private static Image baum2 = getSizedImage(Paths.pbaum2,40,40);
+    private static Image baum3 = getSizedImage(Paths.pbaum3,40,40);
+    private static Image steinweg = getSizedImage(Paths.pSteinweg,40,40);
+
+
 
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
         Image changedImage = null; // Image smalling
@@ -42,6 +52,25 @@ public class Images {
         return changedImage;
     }
 
+    public static Image getDuenger() {
+        return duenger;
+    }
+
+    public static Image getBaum1() {
+        return baum1;
+    }
+
+    public static Image getBaum2() {
+        return baum2;
+    }
+
+    public static Image getBaum3() {
+        return baum3;
+    }
+
+    public static Image getSteinweg() {
+        return steinweg;
+    }
 
     public static Image getGrass() {
         return grass;
