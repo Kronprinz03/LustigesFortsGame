@@ -55,7 +55,7 @@ public class AnimationClock extends Thread{
             try{
                 sleep(300);
             }catch (Exception e){
-                System.out.println(e);;
+                System.out.println(e);
             }
         }
     }

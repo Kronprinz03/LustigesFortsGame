@@ -11,12 +11,14 @@ public class Images {
 @Getter
     private static Image backGroundImage = getSizedImage(Paths.hintergrund,1280,768 );
 
+    private static Image grass = getSizedImage(Paths.pgrass,40,40);
+
+
+
     private static Image unten1 =getSizedImage(Paths.punten1,20,40);
     private static Image oben1 =getSizedImage(Paths.poben1,20,40);
     private static Image rechts1 =getSizedImage(Paths.prechts1,20,40);
     private static Image links1 =getSizedImage(Paths.plinks1,20,40);
-
-
 
     private static Image unten2 =getSizedImage(Paths.punten2,20,40);
     private static Image oben2 =getSizedImage(Paths.poben2,20,40);
@@ -38,6 +40,11 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+
+    public static Image getGrass() {
+        return grass;
     }
 
     public static Image getUnten2() {

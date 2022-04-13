@@ -4,6 +4,7 @@ import ym.lustigesFortsGame.Controll;
 import ym.lustigesFortsGame.Objekt.Player;
 import ym.lustigesFortsGame.enums.Direaction;
 import ym.lustigesFortsGame.enums.Movment;
+import ym.lustigesFortsGame.utils.Images;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,6 +13,7 @@ import java.awt.event.KeyListener;
 public class KeyListeners implements KeyListener {
 
     private Controll controll;
+    private boolean imageLoaded = false;
 
     public KeyListeners(Controll controll){
          this.controll = controll;
@@ -40,14 +42,17 @@ public class KeyListeners implements KeyListener {
             case KeyEvent.VK_A:
                 controll.getSpieler1().setDireaction(switchDireaction(1));
                 controll.getSpieler1().setMovment(Movment.stop);
+
                 break;
             case KeyEvent.VK_S:
                 controll.getSpieler1().setDireaction(switchDireaction(2));
                 controll.getSpieler1().setMovment(Movment.stop);
+
                 break;
             case KeyEvent.VK_D:
                 controll.getSpieler1().setDireaction(switchDireaction(3));
                 controll.getSpieler1().setMovment(Movment.stop);
+
                 break;
         }
     }
@@ -57,6 +62,7 @@ public class KeyListeners implements KeyListener {
         switch (e.getKeyCode()){
             case KeyEvent.VK_W:
                 controll.getSpieler1().setMovment(Movment.stop);
+                imageLoaded = false;
         }
 
 
@@ -125,12 +131,28 @@ public class KeyListeners implements KeyListener {
         Player spieler1 = controll.getSpieler1();
 
         if(spielerDirreaction == Direaction.rechts){
+            if(!imageLoaded) {
+                controll.getSpieler1().setLaufImage(Images.getRechts2());
+                imageLoaded = true;
+            }
             spieler1.setMovment(Movment.nachrechts);
         }else if(spielerDirreaction == Direaction.links){
+            if(!imageLoaded) {
+                controll.getSpieler1().setLaufImage(Images.getLinks2());
+                imageLoaded = true;
+            }
             spieler1.setMovment(Movment.nachlinks);
         }else  if(spielerDirreaction == Direaction.oben){
+            if(!imageLoaded) {
+                controll.getSpieler1().setLaufImage(Images.getOben2());
+                imageLoaded = true;
+            }
             spieler1.setMovment(Movment.nachoben);
         }else {
+            if(!imageLoaded) {
+                controll.getSpieler1().setLaufImage(Images.getUnten2());
+                imageLoaded = true;
+            }
             spieler1.setMovment(Movment.nachunten);
         }
     }

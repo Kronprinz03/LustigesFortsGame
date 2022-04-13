@@ -7,6 +7,12 @@ import java.io.File;
 public class Paths {
     public static File hintergrund = new File("src/main/java/ym/lustigesFortsGame/picture/Hintergrund.jpg");
 
+    //------------------------MAP-----------------------------------
+    public static File pgrass = new File("src/main/java/ym/lustigesFortsGame/picture/map/grass.jpg");
+
+
+
+    //--------------------------------------Spielfigur--------------------------------------------
     public static File punten1 = new File("src/main/java/ym/lustigesFortsGame/picture/player/unten1.png");
     public static File punten2 = new File("src/main/java/ym/lustigesFortsGame/picture/player/unten2.png");
     public static File punten3 = new File("src/main/java/ym/lustigesFortsGame/picture/player/unten3.png");
