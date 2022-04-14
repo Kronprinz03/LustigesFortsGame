@@ -33,6 +33,7 @@ public class Images {
     //-------------------------------Map-------------------------------
     private static Image grass = getSizedImage(Paths.pgrass,40,40);
     private static Image duenger = getSizedImage(Paths.pduenger,40,40);
+    private static Image water = getSizedImage(Paths.pWater,40,40);
 
     private static Image baum1 = getSizedImage(Paths.pbaum1,40,40);
     private static Image baum2 = getSizedImage(Paths.pbaum2,40,40);
@@ -50,6 +51,10 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getWater() {
+        return water;
     }
 
     public static Image getDuenger() {

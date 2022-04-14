@@ -6,6 +6,7 @@ import ym.lustigesFortsGame.enums.Movment;
 
 public class MoveClock extends Thread {
 private Player spieler1;
+private int speed = 5;
 
     public MoveClock(Player spieler1){
         this.spieler1 = spieler1;
@@ -16,17 +17,17 @@ private Player spieler1;
     public void run() {
         while (true){
             //-------------Movement Spieler-----------------
-            if(spieler1.getMovment() == Movment.nachlinks && isMoveOkay(Movment.nachlinks)){
-                spieler1.setPosX(spieler1.getPosX()-5);
+            if(spieler1.getMovment() == Movment.nachlinks && isMoveOkay()){
+                spieler1.setPosX(spieler1.getPosX()-speed);
             }
-            if(spieler1.getMovment() == Movment.nachrechts&& isMoveOkay(Movment.nachrechts)){
-                spieler1.setPosX(spieler1.getPosX()+5);
+            if(spieler1.getMovment() == Movment.nachrechts&& isMoveOkay()){
+                spieler1.setPosX(spieler1.getPosX()+speed);
             }
-            if(spieler1.getMovment() == Movment.nachoben&& isMoveOkay(Movment.nachoben)){
-                spieler1.setPosY(spieler1.getPosY()-5);
+            if(spieler1.getMovment() == Movment.nachoben&& isMoveOkay()){
+                spieler1.setPosY(spieler1.getPosY()-speed);
             }
-            if(spieler1.getMovment() == Movment.nachunten&& isMoveOkay(Movment.nachunten)){
-                spieler1.setPosY(spieler1.getPosY()+5);
+            if(spieler1.getMovment() == Movment.nachunten&& isMoveOkay()){
+                spieler1.setPosY(spieler1.getPosY()+speed);
             }
 
             try {
@@ -37,8 +38,7 @@ private Player spieler1;
         }
     }
 
-    private boolean isMoveOkay(Movment movment){
-
-        return true;
+    private boolean isMoveOkay(){
+        return spieler1.isMoveOkay();
     }
 }

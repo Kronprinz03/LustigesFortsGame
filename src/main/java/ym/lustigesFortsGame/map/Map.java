@@ -23,6 +23,7 @@ public class Map {
     //Auslesehen
     private int inputMap[][];
     private int inputOverlay[][];
+    private int inputCollision[][];
 
 
     public Map(Controll controll){
@@ -32,11 +33,13 @@ public class Map {
         // Interger für die Map
         inputMap = new int[getMaxXgraphic()][getMaxYgraphic()];
         inputOverlay = new int[getMaxXgraphic()][getMaxYgraphic()];
+        inputCollision = new int[getMaxXgraphic()][getMaxYgraphic()];
 
         //-----------Speicher der Elemente --------------------
-        elementeH = new Image[2];
+        elementeH = new Image[3];
         elementeH[0] = Images.getGrass();
         elementeH[1] = Images.getDuenger();
+        elementeH[2] = Images.getWater();
 
         elementeV = new Image[5];
         elementeV[0] = null;
@@ -49,9 +52,9 @@ public class Map {
         //--------------------Lade Map-----------------
         loadMap();
         loadOverlay();
+        loadCollision();
 
     }
-
 
     public Graphics draw (Graphics dbg){
 
@@ -79,10 +82,7 @@ public class Map {
         return dbg;
     }
 
-
     public void loadMap() {
-
-
         //---------------------------------MAP-------------------------
         File map = new File("src/main/java/ym/lustigesFortsGame/txtmap/Map01.txt");
         Scanner scan = null;
@@ -111,8 +111,6 @@ public class Map {
         }
         scan.close();
     }
-
-
     public void loadOverlay()  {
         // Overlay
         File overlay = new File("src/main/java/ym/lustigesFortsGame/txtmap/Overlay.txt");
@@ -122,9 +120,6 @@ public class Map {
         }catch ( Exception e){
             System.out.println("kein Overlay gefunden");
         }
-
-
-
 
         int countX = 0;
         int countY = 0;
@@ -151,4 +146,43 @@ public class Map {
         scOverlay.close();
 
     }
+    public void loadCollision(){
+        // Collision
+        File collision = new File("src/main/java/ym/lustigesFortsGame/txtmap/Collision.txt");
+        Scanner scCollsion = null;
+        try {
+            scCollsion = new Scanner(collision);
+        }catch ( Exception e){
+            System.out.println("kein Overlay gefunden");
+        }
+
+
+
+        int countX = 0;
+        int countY = 0;
+        String line;
+
+        while (scCollsion.hasNext() && countY < getMaxYgraphic()) {
+            line = scCollsion.nextLine();
+
+
+            while (countX < getMaxXgraphic()) {
+                String numberString[] = line.split(" ");
+                int number = Integer.parseInt(numberString[countX]);
+                inputCollision[countX][countY] = number;
+                countX = countX + 1;
+            }
+
+            if (countX == getMaxXgraphic()) {
+                countX = 0;
+                countY = countY + 1;
+            }
+
+        }
+
+        scCollsion.close();
+
+    }
+
+
 }

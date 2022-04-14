@@ -9,6 +9,8 @@ import ym.lustigesFortsGame.Objekt.Button.InitButtons;
 import ym.lustigesFortsGame.Objekt.Player;
 import ym.lustigesFortsGame.map.Map;
 
+import java.io.File;
+
 @Getter
 @Setter
 
@@ -19,6 +21,7 @@ private GUI gui;
 private InitButtons initButtons;
 private Player spieler1;
 private Map map;
+private File collision = null;
 
 //Clocks
 private MoveClock moveClock;
@@ -40,11 +43,16 @@ private boolean pause = false;
 
     //init der Objekte
     private void creatObjects(){
+
+
+
         initButtons = new InitButtons(sizeX,sizeY,this);
-        spieler1 = new Player(sizeX/2-25/2,sizeY/2+25/2,25,25);
+        spieler1 = new Player(sizeX/2-25/2,sizeY/2+25/2,15,30,this);
         map = new Map(this);
         moveClock = new MoveClock(spieler1);
         animationClock = new AnimationClock(this);
+
+
     }
 
     //Start Einstellungen

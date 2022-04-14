@@ -10,13 +10,14 @@ public class Paths {
     //------------------------MAP-----------------------------------
     public static File pgrass = new File("src/main/java/ym/lustigesFortsGame/picture/map/grass.jpg");
     public static File pduenger = new File("src/main/java/ym/lustigesFortsGame/picture/map/duenger.jpg");
+    public static File pWater = new File("src/main/java/ym/lustigesFortsGame/picture/map/water.png");
 
-            //Overlay
+
+    //Overlay
     public static File pbaum1 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/baum1.png");
     public static File pbaum2 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/baum2.png");
     public static File pbaum3 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/baum3.png");
     public static File pSteinweg = new File("src/main/java/ym/lustigesFortsGame/picture/plants/steinweg.png");
-
 
 
     //--------------------------------------Spielfigur--------------------------------------------
