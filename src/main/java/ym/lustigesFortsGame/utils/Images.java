@@ -44,6 +44,7 @@ public class Images {
     private static Image inventar = getSizedImage(Paths.pInventar,120,160);
     private static Image hoe = getSizedImage(Paths.pHoe,35,35);
     private static Image axt  = getSizedImage(Paths.pAxt,35,35);
+    private static Image holz  = getSizedImage(Paths.pHolz,35,35);
 
 
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
@@ -55,6 +56,10 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getHolz() {
+        return holz;
     }
 
     public static Image getInventar() {

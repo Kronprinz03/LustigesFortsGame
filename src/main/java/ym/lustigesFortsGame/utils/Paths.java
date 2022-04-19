@@ -43,4 +43,5 @@ public class Paths {
     public static File pInventar = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Inventar.jpg");
     public static File pHoe = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Hoe.png");
     public static File pAxt = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Axt.png");
+    public static File pHolz = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/holz.png");
 }

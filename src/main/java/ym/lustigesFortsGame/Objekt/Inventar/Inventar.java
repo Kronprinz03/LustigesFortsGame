@@ -28,6 +28,7 @@ public class Inventar {
     private Image invFeld;
     private Image invAxt;
     private Image invHoe;
+    private Image invHolz;
 
     //Objekte
     private Controll controll;
@@ -43,19 +44,26 @@ public class Inventar {
         Font font;
         AffineTransform affinetransform = new AffineTransform();
         FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
+        String number;
 
         if(aktive){
             int tool = controll.getSpieler1().getTool();
             dbg.setColor(Color.white);
             font = new Font("Tahoma", Font.PLAIN, schriftgröße);
             dbg.setFont(font);
-            if(tool == 1){
-             dbg.setColor(Color.red);
-            }
             // Inventory
             dbg.drawImage(invFeld,getPosX(),getPosY(),null);
 
-            //---------------------------Iteams--------------------------
+            //-----------------------Ressources----------------------
+            //holz
+            dbg.drawImage(invHolz,getPosX()+2,getPosY()+75,null);
+            number = Integer.toString(controll.getSpieler1().getBaum());
+            dbg.drawString(number,getPosX()+2,getPosY()+105);
+
+            //---------------------------Tools--------------------------
+            if(tool == 1){
+                dbg.setColor(Color.red);
+            }
             dbg.drawImage(invAxt,getPosX()+2,getPosY()+125,null);
             dbg.drawString("1",getPosX()+2,getPosY()+155);
             dbg.setColor(Color.white);
@@ -80,5 +88,6 @@ public class Inventar {
         invFeld = Images.getInventar();
         invAxt = Images.getAxt();
         invHoe = Images.getHoe();
+        invHolz = Images.getHolz();
     }
 }

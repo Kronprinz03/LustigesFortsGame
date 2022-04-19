@@ -9,7 +9,7 @@ import ym.lustigesFortsGame.enums.Movment;
 import ym.lustigesFortsGame.utils.Images;
 
 import java.awt.*;
-
+import java.util.Random;
 
 
 @Getter
@@ -43,6 +43,9 @@ public class Player {
     private Image laufImage = null;
     private int tool = 1;
     private boolean harvesting = false;
+
+    private int maxDrop = 10;
+    private int minDrop = 1;
 
     //Objekte
     Controll controll;
@@ -146,7 +149,9 @@ public class Player {
             }
 
             if(((overlayObjekt == 1) || (overlayObjekt == 2)) &&(getTool() == 1)) {
-                baum = baum + 5;
+                Random r = new Random();
+                int value = r.nextInt(minDrop+maxDrop)+minDrop;
+                baum = baum +value;
                 controll.getMap().setOverlay(xFeld,yFeld,0);
                 controll.getMap().setInputCollision(xFeld,yFeld,0);
             }
