@@ -44,4 +44,12 @@ public class Paths {
     public static File pHoe = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Hoe.png");
     public static File pAxt = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Axt.png");
     public static File pHolz = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/holz.png");
+    public static File pSamenRettig = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Rettig0.png");
+    public static File pRettig = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Rettig4.png");
+
+    //-----------------------Farming------------------------------------
+    public static File pRettig0 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Rettig1.png");
+    public static File pRettig1 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Rettig2.png");
+    public static File pRettig2 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Rettig3.png");
+
 }

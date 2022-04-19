@@ -45,6 +45,16 @@ public class Images {
     private static Image hoe = getSizedImage(Paths.pHoe,35,35);
     private static Image axt  = getSizedImage(Paths.pAxt,35,35);
     private static Image holz  = getSizedImage(Paths.pHolz,35,35);
+    private static Image rSamen  = getSizedImage(Paths.pSamenRettig,35,35);
+    private static Image rettig  = getSizedImage(Paths.pRettig,35,35);
+
+    //-------------------------Plants------------------------
+
+
+
+    private static Image rettig0  = getSizedImage(Paths.pRettig0,35  ,35);
+    private static Image rettig1  = getSizedImage(Paths.pRettig1,40  ,40);
+    private static Image rettig2  = getSizedImage(Paths.pRettig2,40  ,40);
 
 
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
@@ -56,6 +66,30 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getBackGroundImage() {
+        return backGroundImage;
+    }
+
+    public static Image getrSamen() {
+        return rSamen;
+    }
+
+    public static Image getRettig() {
+        return rettig;
+    }
+
+    public static Image getRettig0() {
+        return rettig0;
+    }
+
+    public static Image getRettig1() {
+        return rettig1;
+    }
+
+    public static Image getRettig2() {
+        return rettig2;
     }
 
     public static Image getHolz() {

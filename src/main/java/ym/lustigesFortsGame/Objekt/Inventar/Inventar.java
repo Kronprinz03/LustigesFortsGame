@@ -29,6 +29,8 @@ public class Inventar {
     private Image invAxt;
     private Image invHoe;
     private Image invHolz;
+    private Image invRettigSamen;
+    private Image invRettig;
 
     //Objekte
     private Controll controll;
@@ -36,7 +38,7 @@ public class Inventar {
 
     //Varible
     private boolean aktive = false;
-    private int schriftgröße =15;
+    private int schriftgröße =22;
 
 
 
@@ -48,8 +50,8 @@ public class Inventar {
 
         if(aktive){
             int tool = controll.getSpieler1().getTool();
-            dbg.setColor(Color.white);
-            font = new Font("Tahoma", Font.PLAIN, schriftgröße);
+            dbg.setColor(Color.BLACK);
+            font = new Font("Tahoma", Font.BOLD, schriftgröße);
             dbg.setFont(font);
             // Inventory
             dbg.drawImage(invFeld,getPosX(),getPosY(),null);
@@ -60,19 +62,30 @@ public class Inventar {
             number = Integer.toString(controll.getSpieler1().getBaum());
             dbg.drawString(number,getPosX()+2,getPosY()+105);
 
+            //Rettig
+            dbg.drawImage(invRettig,getPosX()+2,getPosY()+40,null);
+            number = Integer.toString(controll.getSpieler1().getRettig());
+            dbg.drawString(number,getPosX()+2,getPosY()+70);
+
+            dbg.drawImage(invRettigSamen,getPosX()+2,getPosY(),null);
+            number = Integer.toString(controll.getSpieler1().getRettigSamen());
+            dbg.drawString(number,getPosX()+2,getPosY()+35);
+
             //---------------------------Tools--------------------------
+
+
             if(tool == 1){
                 dbg.setColor(Color.red);
             }
             dbg.drawImage(invAxt,getPosX()+2,getPosY()+125,null);
             dbg.drawString("1",getPosX()+2,getPosY()+155);
-            dbg.setColor(Color.white);
+            dbg.setColor(Color.BLACK);
             if(tool == 2){
                 dbg.setColor(Color.red);
             }
             dbg.drawImage(invHoe,getPosX()+44,getPosY()+125,null);
             dbg.drawString("2",getPosX()+42,getPosY()+155) ;
-            dbg.setColor(Color.white);
+            dbg.setColor(Color.BLACK);
         }
         return dbg;
     }
@@ -89,5 +102,7 @@ public class Inventar {
         invAxt = Images.getAxt();
         invHoe = Images.getHoe();
         invHolz = Images.getHolz();
+        invRettig = Images.getRettig();
+        invRettigSamen = Images.getrSamen();
     }
 }

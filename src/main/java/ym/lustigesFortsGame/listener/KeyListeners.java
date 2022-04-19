@@ -66,6 +66,9 @@ public class KeyListeners implements KeyListener {
                     controll.getSpieler1().theHarvest();
                 }
                 break;
+            case KeyEvent.VK_SPACE:
+                controll.getSpieler1().plant();
+                break;
             case KeyEvent.VK_1:
                 controll.getSpieler1().setTool(1);
                 break;

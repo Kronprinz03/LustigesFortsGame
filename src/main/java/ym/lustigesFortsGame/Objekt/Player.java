@@ -6,6 +6,8 @@ import lombok.SneakyThrows;
 import ym.lustigesFortsGame.Controll;
 import ym.lustigesFortsGame.enums.Direaction;
 import ym.lustigesFortsGame.enums.Movment;
+import ym.lustigesFortsGame.map.plants.Plant;
+import ym.lustigesFortsGame.map.plants.Rettig;
 import ym.lustigesFortsGame.utils.Images;
 
 import java.awt.*;
@@ -36,7 +38,8 @@ public class Player {
 
 
     //Inventar
-
+    private int rettig = 0;
+    private int rettigSamen = 1;
     private int baum = 0;
 
     //Attribut
@@ -137,7 +140,7 @@ public class Player {
             @Override
             public void run() {
                 setHarvesting(true);
-                Thread.sleep(2000);
+                Thread.sleep(100);
                 setHarvesting(false);
             }
         }).run();
@@ -155,14 +158,66 @@ public class Player {
                 controll.getMap().setOverlay(xFeld,yFeld,0);
                 controll.getMap().setInputCollision(xFeld,yFeld,0);
             }
+            for(int i = 0; i < controll.getMap().getPlants().size(); i++){
+                Plant plant = controll.getMap().getPlants().get(i);
+                int plX = plant.getXFeld();
+                int plY = plant.getYFeld();
 
+                if((plX == xFeld) && (plY == yFeld) && (plant.isFinish())){
+                    plant.harvest(this);
+                }
+            }
+        }
+    } // Ablauf wenn der Spieler Axt oder Tool benutzt
 
+    public void plant(){
+        int xFeld = getPosX()/40;
+        int yFeld = (getPosY()+getHeight()/2)/40;
+
+        if(direaction == Direaction.oben){
+            yFeld--;
+        }
+        if(direaction == Direaction.links){
+            xFeld--;
+        }
+        if(direaction == Direaction.rechts){
+            xFeld++;
+        }
+        if(direaction == Direaction.unten){
+            yFeld++;
+        }
+        int auswahl = 0;
+
+        switch (auswahl){
+            case 0:
+                if(getRettigSamen() > 0){
+                    Rettig rettig = new Rettig(xFeld,yFeld,controll);
+                    controll.getMap().getPlants().add(rettig);
+                    setRettigSamen(getRettigSamen()-1);
+                }
+                break;
+
+            case 1:
+                if(getRettigSamen() > 3){
+                    Rettig rettig = new Rettig(xFeld,yFeld,controll);
+                    controll.getMap().getPlants().add(rettig);
+                }
+                break;
+            case 2:
+                if(getRettigSamen() > 7){
+                    Rettig rettig = new Rettig(xFeld,yFeld,controll);
+                    controll.getMap().getPlants().add(rettig);
+                }
+                break;
         }
 
 
 
 
-    } // Ablauf wenn der Spieler Axt oder Tool benutzt
+
+
+    }
+
 
     private Rectangle nextHitbox(){
 

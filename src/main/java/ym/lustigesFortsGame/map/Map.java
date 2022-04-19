@@ -2,11 +2,13 @@ package ym.lustigesFortsGame.map;
 
 import lombok.Getter;
 import ym.lustigesFortsGame.Controll;
+import ym.lustigesFortsGame.map.plants.Plant;
 import ym.lustigesFortsGame.utils.Images;
 
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 @Getter
@@ -19,6 +21,7 @@ public class Map {
     //-------------------MAP-Elemente--------------
     private Image elementeH[];
     private Image elementeV[];
+    private ArrayList<Plant> plants = new ArrayList<>();
 
     //Auslesehen
     private int inputMap[][];
@@ -47,8 +50,6 @@ public class Map {
         elementeV[3] = Images.getBaum3();
         elementeV[4] = Images.getDuenger();
         elementeV[5] = Images.getSteinweg();
-
-
         //--------------------Lade Map-----------------
         loadMap();
         loadOverlay();
@@ -78,6 +79,11 @@ public class Map {
                 y = y + 40;
             }
         }
+        for(int i = 0; i < plants.size(); i++){
+            Plant plant = plants.get(i);
+            plant.draw(dbg);
+        }
+
 
         return dbg;
     }
