@@ -2,6 +2,7 @@ package ym.lustigesFortsGame.Objekt;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import ym.lustigesFortsGame.Controll;
 import ym.lustigesFortsGame.enums.Direaction;
 import ym.lustigesFortsGame.enums.Movment;
@@ -33,9 +34,15 @@ public class Player {
     private Direaction direaction = Direaction.unten;
     private Movment movment = Movment.stop;
 
+
+    //Inventar
+
+    private int baum = 0;
+
     //Attribut
     private Image laufImage = null;
     private int tool = 1;
+    private boolean harvesting = false;
 
     //Objekte
     Controll controll;
@@ -106,6 +113,49 @@ public class Player {
     } // Schaut ob der Spieler laufen kann
 
     public void theHarvest(){
+        int xFeld = getPosX()/40;
+        int yFeld = (getPosY()+getHeight()/2)/40;
+
+        if(direaction == Direaction.oben){
+            yFeld--;
+        }
+        if(direaction == Direaction.links){
+            xFeld--;
+        }
+        if(direaction == Direaction.rechts){
+            xFeld++;
+        }
+        if(direaction == Direaction.unten){
+            yFeld++;
+        }
+
+        new Thread(new Runnable() {
+            @SneakyThrows
+            @Override
+            public void run() {
+                setHarvesting(true);
+                Thread.sleep(2000);
+                setHarvesting(false);
+            }
+        }).run();
+        int mapObjekt = controll.getMap().getMap(xFeld,yFeld);
+        if(mapObjekt == 0){
+            int overlayObjekt = controll.getMap().getOverlay(xFeld,yFeld);
+            if((overlayObjekt == 0) && (getTool() == 2)){
+                controll.getMap().setOverlay(xFeld,yFeld,4);
+            }
+
+            if(((overlayObjekt == 1) || (overlayObjekt == 2)) &&(getTool() == 1)) {
+                baum = baum + 5;
+                controll.getMap().setOverlay(xFeld,yFeld,0);
+                controll.getMap().setInputCollision(xFeld,yFeld,0);
+            }
+
+
+        }
+
+
+
 
     } // Ablauf wenn der Spieler Axt oder Tool benutzt
 

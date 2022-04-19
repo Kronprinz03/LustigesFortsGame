@@ -61,7 +61,11 @@ public class KeyListeners implements KeyListener {
                     controll.getInventar().setAktive(true);
                 }
                 break;
-
+            case KeyEvent.VK_F:
+                if(!controll.getSpieler1().isHarvesting()){
+                    controll.getSpieler1().theHarvest();
+                }
+                break;
             case KeyEvent.VK_1:
                 controll.getSpieler1().setTool(1);
                 break;

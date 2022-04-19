@@ -4,9 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.listener.KeyListeners;
-import ym.lustigesFortsGame.listener.MouseListener;
 import ym.lustigesFortsGame.utils.Images;
-import ym.lustigesFortsGame.utils.Paths;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -107,7 +106,6 @@ public class GUI extends JFrame implements Runnable {
 
     public void addListerner(){
         addKeyListener(new KeyListeners(controll));
-        addMouseListener(new MouseListener(controll));
         for (ButtonTemplate button : controll.getInitButtons().getStartbuttons()){
             addMouseMotionListener(button);
             addMouseListener(button);

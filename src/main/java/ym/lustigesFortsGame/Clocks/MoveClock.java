@@ -17,24 +17,27 @@ private int speed = 5;
     public void run() {
         while (true){
             //-------------Movement Spieler-----------------
-            if(spieler1.getMovment() == Movment.nachlinks && isMoveOkay()){
-                spieler1.setPosX(spieler1.getPosX()-speed);
-            }
-            if(spieler1.getMovment() == Movment.nachrechts&& isMoveOkay()){
-                spieler1.setPosX(spieler1.getPosX()+speed);
-            }
-            if(spieler1.getMovment() == Movment.nachoben&& isMoveOkay()){
-                spieler1.setPosY(spieler1.getPosY()-speed);
-            }
-            if(spieler1.getMovment() == Movment.nachunten&& isMoveOkay()){
-                spieler1.setPosY(spieler1.getPosY()+speed);
-            }
+            if(!spieler1.isHarvesting()) {
+                if (spieler1.getMovment() == Movment.nachlinks && isMoveOkay()) {
+                    spieler1.setPosX(spieler1.getPosX() - speed);
+                }
+                if (spieler1.getMovment() == Movment.nachrechts && isMoveOkay()) {
+                    spieler1.setPosX(spieler1.getPosX() + speed);
+                }
+                if (spieler1.getMovment() == Movment.nachoben && isMoveOkay()) {
+                    spieler1.setPosY(spieler1.getPosY() - speed);
+                }
+                if (spieler1.getMovment() == Movment.nachunten && isMoveOkay()) {
+                    spieler1.setPosY(spieler1.getPosY() + speed);
+                }
 
-            try {
-                sleep(1000/60);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                try {
+                    sleep(1000 / 60);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            System.out.println();
         }
     }
 

@@ -38,15 +38,15 @@ public class Map {
         //-----------Speicher der Elemente --------------------
         elementeH = new Image[3];
         elementeH[0] = Images.getGrass();
-        elementeH[1] = Images.getDuenger();
-        elementeH[2] = Images.getWater();
+        elementeH[1] = Images.getWater();
 
-        elementeV = new Image[5];
+        elementeV = new Image[6];
         elementeV[0] = null;
         elementeV[1] = Images.getBaum1();
         elementeV[2] = Images.getBaum2();
         elementeV[3] = Images.getBaum3();
-        elementeV[4] = Images.getSteinweg();
+        elementeV[4] = Images.getDuenger();
+        elementeV[5] = Images.getSteinweg();
 
 
         //--------------------Lade Map-----------------
@@ -81,6 +81,23 @@ public class Map {
 
         return dbg;
     }
+
+    public int getMap (int x, int y){
+        return inputMap[x][y];
+    }
+
+    public int getOverlay (int x, int y){
+        return inputOverlay[x][y];
+    }
+    public void setOverlay (int x, int y, int objekt){
+        inputOverlay[x][y] = objekt;
+    }
+    public void setInputCollision(int x, int y , int objekt){
+        inputCollision[x][y] = objekt;
+    }
+
+
+
 
     public void loadMap() {
         //---------------------------------MAP-------------------------
