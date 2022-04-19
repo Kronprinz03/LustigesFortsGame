@@ -76,10 +76,14 @@ public class KeyListeners implements KeyListener {
             case KeyEvent.VK_2:
                 controll.getSpieler1().setTool(2);
                 break;
+            case KeyEvent.VK_K:
+                Player spieler = controll.getSpieler1();
+                if(spieler.getSeedOpt() < 2){
+                    spieler.setSeedOpt(spieler.getSeedOpt()+1);
+                }else{
+                    spieler.setSeedOpt(0);
+                }
         }
-
-
-
     }
 
     @Override

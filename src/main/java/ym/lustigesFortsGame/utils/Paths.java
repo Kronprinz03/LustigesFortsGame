@@ -44,12 +44,30 @@ public class Paths {
     public static File pHoe = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Hoe.png");
     public static File pAxt = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Axt.png");
     public static File pHolz = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/holz.png");
+
     public static File pSamenRettig = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Rettig0.png");
     public static File pRettig = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Rettig4.png");
+
+    public static File pSamenAnanas = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Ananas.png");
+    public static File pAnanas = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Ananas4.png");
+
+    public static File pSamenGurke = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Gurke.png");
+    public static File pGurke = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/farming/Gurke3.png");
+
+
 
     //-----------------------Farming------------------------------------
     public static File pRettig0 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Rettig1.png");
     public static File pRettig1 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Rettig2.png");
     public static File pRettig2 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Rettig3.png");
+
+    public static File pAnanas0 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Ananas0.png");
+    public static File pAnanas1 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Ananas1.png");
+    public static File pAnanas2 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Ananas2.png");
+    public static File pAnanas3 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Ananas3.png");
+
+    public static File pGurke0 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Gurke0.png");
+    public static File pGurke1 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Gurke1.png");
+    public static File pGurke2 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Gurke2.png");
 
 }

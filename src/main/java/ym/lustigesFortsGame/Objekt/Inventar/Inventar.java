@@ -31,6 +31,10 @@ public class Inventar {
     private Image invHolz;
     private Image invRettigSamen;
     private Image invRettig;
+    private Image invGurkenSamen;
+    private Image invGurke;
+    private Image invAnanasSamen;
+    private Image invAnanas;
 
     //Objekte
     private Controll controll;
@@ -50,6 +54,7 @@ public class Inventar {
 
         if(aktive){
             int tool = controll.getSpieler1().getTool();
+            int seed = controll.getSpieler1().getSeedOpt();
             dbg.setColor(Color.BLACK);
             font = new Font("Tahoma", Font.BOLD, schriftgröße);
             dbg.setFont(font);
@@ -67,9 +72,39 @@ public class Inventar {
             number = Integer.toString(controll.getSpieler1().getRettig());
             dbg.drawString(number,getPosX()+2,getPosY()+70);
 
+            if(seed == 0){
+             dbg.setColor(Color.red);
+            }
             dbg.drawImage(invRettigSamen,getPosX()+2,getPosY(),null);
             number = Integer.toString(controll.getSpieler1().getRettigSamen());
             dbg.drawString(number,getPosX()+2,getPosY()+35);
+            dbg.setColor(Color.BLACK);
+
+            //Ananas
+            dbg.drawImage(invAnanas,getPosX()+42,getPosY()+40,null);
+            number = Integer.toString(controll.getSpieler1().getAnanas());
+            dbg.drawString(number,getPosX()+42,getPosY()+70);
+
+            if(seed == 1){
+                dbg.setColor(Color.red);
+            }
+            dbg.drawImage(invAnanasSamen,getPosX()+42,getPosY(),null);
+            number = Integer.toString(controll.getSpieler1().getAnanasSamen());
+            dbg.drawString(number,getPosX()+42,getPosY()+35);
+            dbg.setColor(Color.BLACK);
+
+            //Gurke
+            dbg.drawImage(invGurke,getPosX()+82,getPosY()+40,null);
+            number = Integer.toString(controll.getSpieler1().getGurke());
+            dbg.drawString(number,getPosX()+82,getPosY()+70);
+
+            if(seed == 2){
+                dbg.setColor(Color.red);
+            }
+            dbg.drawImage(invGurkenSamen,getPosX()+82,getPosY(),null);
+            number = Integer.toString(controll.getSpieler1().getGurkenSamen());
+            dbg.drawString(number,getPosX()+82,getPosY()+35);
+            dbg.setColor(Color.white);
 
             //---------------------------Tools--------------------------
 
@@ -102,7 +137,14 @@ public class Inventar {
         invAxt = Images.getAxt();
         invHoe = Images.getHoe();
         invHolz = Images.getHolz();
+
         invRettig = Images.getRettig();
         invRettigSamen = Images.getrSamen();
+
+        invAnanas = Images.getAnanas();
+        invAnanasSamen = Images.getaSamen();
+
+        invGurke = Images.getGurke();
+        invGurkenSamen = Images.getgSamen();
     }
 }

@@ -9,6 +9,8 @@ import ym.lustigesFortsGame.utils.Images;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
 
 @Getter
 @Setter
@@ -17,7 +19,7 @@ public class GUI extends JFrame implements Runnable {
     private int SIZEX;
     private int SIZEY;
 
-    private String titel = "Lustiges Forts Game";
+    private String titel = "Farmspiel mit großen Pflanzen";
     private Image dbImage = null;
     private Graphics dbg;
     private Font font;
@@ -67,6 +69,18 @@ public class GUI extends JFrame implements Runnable {
 
             //Hintergrund
             dbg.drawImage(getBackGroundImage(), 0, 0, null);
+
+            dbg.setColor(Color.BLACK);
+            AffineTransform affinetransform = new AffineTransform();
+            FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
+            Font font;
+            font = new Font("Tahoma", Font.PLAIN, 40);
+            int textHeight = (int) (font.getStringBounds(titel, frc).getHeight()+7); // höhe der SChrift
+            int textwidth = (int) (font.getStringBounds(titel, frc).getWidth()); // Breite der Schrift
+            dbg.setFont(font);
+
+            dbg.drawString(titel,SIZEX/2-textwidth/2,SIZEY/2-150);
+
 
             for (ButtonTemplate button : controll.getInitButtons().getStartbuttons()) {
                 dbg = button.draw(dbg);

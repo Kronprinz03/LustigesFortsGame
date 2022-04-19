@@ -45,12 +45,25 @@ public class Images {
     private static Image hoe = getSizedImage(Paths.pHoe,35,35);
     private static Image axt  = getSizedImage(Paths.pAxt,35,35);
     private static Image holz  = getSizedImage(Paths.pHolz,35,35);
+
     private static Image rSamen  = getSizedImage(Paths.pSamenRettig,35,35);
     private static Image rettig  = getSizedImage(Paths.pRettig,35,35);
 
+    private static Image aSamen  = getSizedImage(Paths.pSamenAnanas,35,35);
+    private static Image ananas  = getSizedImage(Paths.pAnanas,35,35);
+
+    private static Image gSamen  = getSizedImage(Paths.pSamenGurke,35,35);
+    private static Image gurke  = getSizedImage(Paths.pGurke,35,35);
+
     //-------------------------Plants------------------------
+    private static Image ananas0  = getSizedImage(Paths.pAnanas0,35  ,35);
+    private static Image ananas1  = getSizedImage(Paths.pAnanas1,40  ,40);
+    private static Image ananas2  = getSizedImage(Paths.pAnanas2,40  ,40);
+    private static Image ananas3  = getSizedImage(Paths.pAnanas3,40  ,40);
 
-
+    private static Image gurke0  = getSizedImage(Paths.pGurke0,35  ,35);
+    private static Image gurke1  = getSizedImage(Paths.pGurke1,40  ,40);
+    private static Image gurke2  = getSizedImage(Paths.pGurke2,40  ,40);
 
     private static Image rettig0  = getSizedImage(Paths.pRettig0,35  ,35);
     private static Image rettig1  = getSizedImage(Paths.pRettig1,40  ,40);
@@ -66,6 +79,50 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getaSamen() {
+        return aSamen;
+    }
+
+    public static Image getAnanas() {
+        return ananas;
+    }
+
+    public static Image getgSamen() {
+        return gSamen;
+    }
+
+    public static Image getGurke() {
+        return gurke;
+    }
+
+    public static Image getAnanas0() {
+        return ananas0;
+    }
+
+    public static Image getAnanas1() {
+        return ananas1;
+    }
+
+    public static Image getAnanas2() {
+        return ananas2;
+    }
+
+    public static Image getAnanas3() {
+        return ananas3;
+    }
+
+    public static Image getGurke0() {
+        return gurke0;
+    }
+
+    public static Image getGurke1() {
+        return gurke1;
+    }
+
+    public static Image getGurke2() {
+        return gurke2;
     }
 
     public static Image getBackGroundImage() {

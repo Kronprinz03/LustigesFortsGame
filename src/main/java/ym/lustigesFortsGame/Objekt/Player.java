@@ -6,6 +6,8 @@ import lombok.SneakyThrows;
 import ym.lustigesFortsGame.Controll;
 import ym.lustigesFortsGame.enums.Direaction;
 import ym.lustigesFortsGame.enums.Movment;
+import ym.lustigesFortsGame.map.plants.Ananas;
+import ym.lustigesFortsGame.map.plants.Gurke;
 import ym.lustigesFortsGame.map.plants.Plant;
 import ym.lustigesFortsGame.map.plants.Rettig;
 import ym.lustigesFortsGame.utils.Images;
@@ -40,6 +42,15 @@ public class Player {
     //Inventar
     private int rettig = 0;
     private int rettigSamen = 1;
+
+    private int ananas = 0;
+    private int ananasSamen = 1;
+
+    private int gurke = 0;
+    private int gurkenSamen = 1;
+
+    private int seedOpt;
+
     private int baum = 0;
 
     //Attribut
@@ -186,36 +197,33 @@ public class Player {
         if(direaction == Direaction.unten){
             yFeld++;
         }
-        int auswahl = 0;
+        if(controll.getMap().getOverlay(xFeld,yFeld) == 4) {
 
-        switch (auswahl){
-            case 0:
-                if(getRettigSamen() > 0){
-                    Rettig rettig = new Rettig(xFeld,yFeld,controll);
-                    controll.getMap().getPlants().add(rettig);
-                    setRettigSamen(getRettigSamen()-1);
-                }
-                break;
+            switch (seedOpt) {
+                case 0:
+                    if (getRettigSamen() > 0) {
+                        Rettig rettig = new Rettig(xFeld, yFeld, controll);
+                        controll.getMap().getPlants().add(rettig);
+                        setRettigSamen(getRettigSamen() - 1);
+                    }
+                    break;
 
-            case 1:
-                if(getRettigSamen() > 3){
-                    Rettig rettig = new Rettig(xFeld,yFeld,controll);
-                    controll.getMap().getPlants().add(rettig);
-                }
-                break;
-            case 2:
-                if(getRettigSamen() > 7){
-                    Rettig rettig = new Rettig(xFeld,yFeld,controll);
-                    controll.getMap().getPlants().add(rettig);
-                }
-                break;
+                case 1:
+                    if (getAnanasSamen() > 0) {
+                        Ananas ananas = new Ananas(xFeld, yFeld, controll);
+                        controll.getMap().getPlants().add(ananas);
+                        setAnanasSamen(getAnanasSamen() - 1);
+                    }
+                    break;
+                case 2:
+                    if (getGurkenSamen() > 0) {
+                        Gurke gurke = new Gurke(xFeld, yFeld, controll);
+                        controll.getMap().getPlants().add(gurke);
+                        setGurkenSamen(getGurkenSamen() - 1);
+                    }
+                    break;
+            }
         }
-
-
-
-
-
-
     }
 
 

@@ -23,6 +23,7 @@ public abstract class Plant {
     protected Image grow0;
     protected Image grow1;
     protected Image grow2;
+    protected Image grow3;
 
 
     protected boolean finish;
