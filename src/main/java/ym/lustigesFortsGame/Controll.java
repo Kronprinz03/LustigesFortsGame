@@ -6,6 +6,7 @@ import ym.lustigesFortsGame.Clocks.AnimationClock;
 import ym.lustigesFortsGame.Clocks.MoveClock;
 import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.Objekt.Button.InitButtons;
+import ym.lustigesFortsGame.Objekt.Inventar.Inventar;
 import ym.lustigesFortsGame.Objekt.Player;
 import ym.lustigesFortsGame.map.Map;
 
@@ -22,6 +23,7 @@ private InitButtons initButtons;
 private Player spieler1;
 private Map map;
 private File collision = null;
+private Inventar inventar;
 
 //Clocks
 private MoveClock moveClock;
@@ -44,14 +46,12 @@ private boolean pause = false;
     //init der Objekte
     private void creatObjects(){
 
-
-
         initButtons = new InitButtons(sizeX,sizeY,this);
         spieler1 = new Player(sizeX/2-25/2,sizeY/2+25/2,15,30,this);
         map = new Map(this);
         moveClock = new MoveClock(spieler1);
         animationClock = new AnimationClock(this);
-
+        inventar = new Inventar(sizeX-160,sizeY-200,120,160,this);
 
     }
 

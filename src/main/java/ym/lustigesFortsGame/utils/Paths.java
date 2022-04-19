@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.io.File;
 @Getter
 public class Paths {
+    //--------------------------------Start-Screen-------------------------------------
     public static File hintergrund = new File("src/main/java/ym/lustigesFortsGame/picture/Hintergrund.jpg");
 
     //------------------------MAP-----------------------------------
@@ -37,4 +38,9 @@ public class Paths {
     public static File plinks2 = new File("src/main/java/ym/lustigesFortsGame/picture/player/links2.png");
     public static File plinks3 = new File("src/main/java/ym/lustigesFortsGame/picture/player/links3.png");
 
+
+    //-----------------------------Inventar------------------------------------
+    public static File pInventar = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Inventar.jpg");
+    public static File pHoe = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Hoe.png");
+    public static File pAxt = new File("src/main/java/ym/lustigesFortsGame/picture/inventar/Axt.png");
 }

@@ -52,9 +52,27 @@ public class KeyListeners implements KeyListener {
             case KeyEvent.VK_D:
                 controll.getSpieler1().setDireaction(switchDireaction(3));
                 controll.getSpieler1().setMovment(Movment.stop);
+                break;
 
+            case KeyEvent.VK_E:
+                if(controll.getInventar().isAktive()){
+                    controll.getInventar().setAktive(false);
+                }else{
+                    controll.getInventar().setAktive(true);
+                }
+                break;
+
+            case KeyEvent.VK_1:
+                controll.getSpieler1().setTool(1);
+                break;
+
+            case KeyEvent.VK_2:
+                controll.getSpieler1().setTool(2);
                 break;
         }
+
+
+
     }
 
     @Override

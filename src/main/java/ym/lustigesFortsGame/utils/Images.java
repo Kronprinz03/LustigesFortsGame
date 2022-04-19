@@ -40,6 +40,10 @@ public class Images {
     private static Image baum3 = getSizedImage(Paths.pbaum3,40,40);
     private static Image steinweg = getSizedImage(Paths.pSteinweg,40,40);
 
+    //---------------------------Inventar--------------------
+    private static Image inventar = getSizedImage(Paths.pInventar,120,160);
+    private static Image hoe = getSizedImage(Paths.pHoe,35,35);
+    private static Image axt  = getSizedImage(Paths.pAxt,35,35);
 
 
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
@@ -51,6 +55,18 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getInventar() {
+        return inventar;
+    }
+
+    public static Image getHoe() {
+        return hoe;
+    }
+
+    public static Image getAxt() {
+        return axt;
     }
 
     public static Image getWater() {

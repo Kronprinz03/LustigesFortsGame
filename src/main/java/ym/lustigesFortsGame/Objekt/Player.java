@@ -35,6 +35,7 @@ public class Player {
 
     //Attribut
     private Image laufImage = null;
+    private int tool = 1;
 
     //Objekte
     Controll controll;
@@ -69,7 +70,6 @@ public class Player {
            dbg.drawImage(getLaufImage(),getPosX(),getPosY(),null);
        }
 
-
         return dbg;
     }
 
@@ -103,8 +103,11 @@ public class Player {
 
 
         return moveOkay;
-    }
+    } // Schaut ob der Spieler laufen kann
 
+    public void theHarvest(){
+
+    } // Ablauf wenn der Spieler Axt oder Tool benutzt
 
     private Rectangle nextHitbox(){
 
@@ -133,5 +136,5 @@ public class Player {
 
         Rectangle playerHitbox = new Rectangle(nextPosX1, nextPosY1,getWidth(),getHeight());
         return playerHitbox;
-    }
+    } //berechnet die Hitbox der nächsten Bewegung
 }

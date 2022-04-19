@@ -26,25 +26,43 @@ public class InitButtons {
 
 
 
+
     public InitButtons(int sizeX, int sizeY, Controll controll){
         this.controll = controll;
         getMid(sizeX,sizeY);
+
+
+        //---------------------------Buttons fürs Startmenü-----------------------------------
+        initStartmenue(sizeX,sizeY);
+
+
+
+
+        //-------------------------Buttons fürs IngameOptionsmenü----------------------
+
+
+
+
+
+
+    }
+
+    private void initStartmenue(int sizeX,int sizeY) {
         int width = 300;
         int hight = 50;
 
-        //---------------------------Buttons fürs Startmenü-----------------------------------
         localButton = new ButtonTemplate("SingelPlayer" , midX -width/2, midY -hight/2-20,width,hight,30,true) {
             @Override
             void onClick() {
-                    setAktive(false);
-                    controll.startGame();
+                setAktive(false);
+                controll.startGame();
 
             }
         };
         onlineButton = new ButtonTemplate("Coming never", midX - width/2, midY - hight/2 +50,width,hight,30,true) {
             @Override
             void onClick() {
-              setAktive(false);
+                setAktive(false);
             }
         };
 
@@ -66,16 +84,6 @@ public class InitButtons {
         startbuttons.add(closeButton);
         startbuttons.add(onlineButton);
         startbuttons.add(localButton);
-
-
-
-        //-------------------------Buttons fürs IngameOptionsmenü----------------------
-
-
-
-
-        ingameOptionButtons.add(closeButton);
-
     }
 
     private void getMid(int sizeX, int sizeY){
