@@ -103,6 +103,7 @@ public class KeyListeners implements KeyListener {
         Direaction direaction = controll.getSpieler1().getDireaction();
         Direaction nextDireaction = null;
 
+
         if(direaction == Direaction.oben){
             switch (taste){
                 case 1:

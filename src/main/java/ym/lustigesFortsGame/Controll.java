@@ -47,7 +47,7 @@ private boolean pause = false;
     private void creatObjects(){
 
         initButtons = new InitButtons(sizeX,sizeY,this);
-        spieler1 = new Player(sizeX/2-25/2,sizeY/2+25/2,15,30,this);
+        spieler1 = new Player(sizeX/2-25/2,sizeY/2+25/2,20,40,this);
         map = new Map(this);
         moveClock = new MoveClock(spieler1);
         animationClock = new AnimationClock(this);

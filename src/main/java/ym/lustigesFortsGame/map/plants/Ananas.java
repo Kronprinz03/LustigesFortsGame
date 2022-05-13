@@ -35,6 +35,7 @@ public class Ananas extends Plant{
     public void harvest(Player spieler) {
         spieler.setAnanas(spieler.getAnanas()+1);
         grown = 2;
+        growing();
 
     }
     @Override
@@ -43,15 +44,13 @@ public class Ananas extends Plant{
             @SneakyThrows
             @Override
             public void run() {
-                while (true){
-                    while (grown < 3) {
-                        finish = false;
-                        Thread.sleep(growingSpeed);
-                        grown++;
-                    }
-                    finish = true;
-                    System.out.println();
+                while (grown < 3) {
+                    finish = false;
+                    Thread.sleep(growingSpeed);
+                    grown++;
                 }
+                finish = true;
+                System.out.println();
             }
         }).start();
     }

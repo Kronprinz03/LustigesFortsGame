@@ -17,6 +17,8 @@ public class Map {
     private int maxXgraphic;
     private int maxYgraphic;
 
+    //Objekte
+    Controll controll;
 
     //-------------------MAP-Elemente--------------
     private Image elementeH[];
@@ -55,6 +57,8 @@ public class Map {
         loadOverlay();
         loadCollision();
 
+        this.controll = controll;
+
     }
 
     public Graphics draw (Graphics dbg){
@@ -83,7 +87,9 @@ public class Map {
             Plant plant = plants.get(i);
             plant.draw(dbg);
         }
+        dbg.setColor(Color.YELLOW);
 
+        dbg.drawRect(controll.getSpieler1().getHarvestX()*40,controll.getSpieler1().getHarvestY()*40,40,40);
 
         return dbg;
     }
@@ -103,7 +109,19 @@ public class Map {
     }
 
 
+    public boolean isTherePlant(int x, int y){
+        boolean noPlant = true;
 
+        for(Plant plant : plants){
+            int pX = plant.getXFeld();
+            int pY = plant.getYFeld();
+
+            if(pX == x && pY == y){
+                noPlant = false;
+            }
+        }
+        return noPlant;
+    }
 
     public void loadMap() {
         //---------------------------------MAP-------------------------

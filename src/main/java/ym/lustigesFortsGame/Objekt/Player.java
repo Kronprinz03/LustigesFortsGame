@@ -30,6 +30,9 @@ public class Player {
     private int nextPosX2;
     private int nextPosY2;
 
+    private int harvestX;
+    private int harvestY;
+
 
     private int width;
     private int height;
@@ -69,7 +72,7 @@ public class Player {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
-        this.height = height;
+        this.height = height-5;
         this.controll = controll;
     }
 
@@ -101,28 +104,17 @@ public class Player {
 
         boolean moveOkay = true;
         int collision[][] = controll.getMap().getInputCollision();
-        Rectangle playerhitbox = nextHitbox();
+        nextHitbox();
+
+        int nextXFeld1 = nextPosX1/40;
+        int nextYFeld1 = nextPosY1/40;
+
+        int nextXFeld2 = nextPosX2/40;
+        int nextYFeld2 = nextPosY2/40;
 
 
-        int xFeld = getPosX()/40;
-        int yFeld = getPosY()/40;
-
-        int nextxFeld;
-        int nextyFeld;
-
-        nextxFeld = (getNextPosX1())/40;
-        nextyFeld = (getNextPosY1())/40;
-
-        if(!(collision[nextxFeld][nextyFeld] == 0)){
+        if((collision[nextXFeld1][nextYFeld1] != 0) || (collision[nextXFeld2][nextYFeld2] != 0)){
             moveOkay = false;
-        }
-        if(movment == Movment.nachrechts || movment == Movment.nachlinks){
-            int nextyFeld2 = (getNextPosY2()-5)/40;
-
-
-            if(!(collision[nextxFeld][nextyFeld2] == 0)){
-                moveOkay = false;
-            }
         }
 
 
@@ -130,7 +122,7 @@ public class Player {
     } // Schaut ob der Spieler laufen kann
 
     public void theHarvest(){
-        int xFeld = getPosX()/40;
+        int xFeld = (getPosX()+(getWidth()/2))/40;
         int yFeld = (getPosY()+getHeight()/2)/40;
 
         if(direaction == Direaction.oben){
@@ -145,6 +137,10 @@ public class Player {
         if(direaction == Direaction.unten){
             yFeld++;
         }
+
+        harvestY = yFeld;
+        harvestX = xFeld;
+
 
         new Thread(new Runnable() {
             @SneakyThrows
@@ -182,7 +178,7 @@ public class Player {
     } // Ablauf wenn der Spieler Axt oder Tool benutzt
 
     public void plant(){
-        int xFeld = getPosX()/40;
+        int xFeld = (getPosX()+(getWidth()/2))/40;
         int yFeld = (getPosY()+getHeight()/2)/40;
 
         if(direaction == Direaction.oben){
@@ -197,7 +193,7 @@ public class Player {
         if(direaction == Direaction.unten){
             yFeld++;
         }
-        if(controll.getMap().getOverlay(xFeld,yFeld) == 4) {
+        if((controll.getMap().getOverlay(xFeld,yFeld) == 4) && (controll.getMap().isTherePlant(xFeld,yFeld))) {
 
             switch (seedOpt) {
                 case 0:
@@ -226,8 +222,7 @@ public class Player {
         }
     }
 
-
-    private Rectangle nextHitbox(){
+    private void nextHitbox(){
 
         nextPosX1 = getPosX();
         nextPosY1 = getPosY();
@@ -235,24 +230,56 @@ public class Player {
         nextPosX2 = getPosX();
         nextPosY2 = getPosY();
 
+        int hitboxwidth = getWidth() -5;
+
+
         if(direaction == Direaction.links){
             nextPosX1 -= 5;
+            nextPosX2 -= 5;
             nextPosY2 += getHeight();
         }
         if(direaction == Direaction.rechts){
-            nextPosX1 += 5+ getWidth();
+            nextPosX1 += 5 + getWidth();
+            nextPosY1 += 5 + getWidth();
             nextPosY2 += getHeight();
 
         }
         if(direaction == Direaction.oben){
             nextPosY1 -=5;
+            nextPosY2 -=5;
+            nextPosX2 += getWidth();
         }
         if(direaction == Direaction.unten){
             nextPosY1 +=5 + getHeight();
+            nextPosY2 +=5 + getHeight();
+            nextPosX2 += getWidth();
         }
 
-
-        Rectangle playerHitbox = new Rectangle(nextPosX1, nextPosY1,getWidth(),getHeight());
-        return playerHitbox;
     } //berechnet die Hitbox der nächsten Bewegung
+
+    public void setDireaction(Direaction direaction) {
+        this.direaction = direaction;
+        loadharvest();
+    }
+
+    public void loadharvest() {
+        int xFeld = (getPosX()+(getWidth()/2))/40;
+        int yFeld = (getPosY()+getHeight()/2)/40;
+
+        if(direaction == Direaction.oben){
+            yFeld--;
+        }
+        if(direaction == Direaction.links){
+            xFeld--;
+        }
+        if(direaction == Direaction.rechts){
+            xFeld++;
+        }
+        if(direaction == Direaction.unten){
+            yFeld++;
+        }
+
+        harvestY = yFeld;
+        harvestX = xFeld;
+    }
 }
