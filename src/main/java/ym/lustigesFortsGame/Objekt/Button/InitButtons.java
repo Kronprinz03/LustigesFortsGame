@@ -17,6 +17,15 @@ public class InitButtons {
     private ButtonTemplate closeButton;
     private ButtonTemplate optionsButton;
 
+    private ButtonTemplate sellAll;
+    private ButtonTemplate buyAnanasSeed;
+    private ButtonTemplate buyGurkenSeed;
+    private ButtonTemplate buyRettigSeed;
+
+    private ButtonTemplate sellAnanasSeed;
+    private ButtonTemplate sellGurkenSeed;
+    private ButtonTemplate sellRettigSeed;
+
     private ButtonTemplate returnMenue;
 
     private int midY;
@@ -36,15 +45,82 @@ public class InitButtons {
         initStartmenue(sizeX,sizeY);
 
 
-
-
-        //-------------------------Buttons fürs IngameOptionsmenü----------------------
-
+        //-------------------------Buttons fürs Ingame----------------------
+        initShopButton();
 
 
 
 
 
+    }
+
+    private void initShopButton(){
+        int x = controll.getShop().getX();
+        int y = controll.getShop().getY();
+        int width = controll.getShop().getWidth();
+        int height = controll.getShop().getHeight();
+
+        ArrayList <ButtonTemplate> arrayShopButton = controll.getShop().getShopButtons();
+
+        sellAnanasSeed = new ButtonTemplate("Sell", x+20, y +350, 50,30,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().sell(1);
+            }
+        };
+
+        buyAnanasSeed = new ButtonTemplate("Buy",x+80,y+350, 50,30,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().buy(1);
+            }
+        };
+
+        sellGurkenSeed = new ButtonTemplate("Sell",(x+width/2)-55,y+350,50,30,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().sell(2);
+            }
+        };
+
+        buyGurkenSeed = new ButtonTemplate("Buy",(x+width/2)+5,y+350,50,30,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().buy(2);
+            }
+        };
+
+        sellRettigSeed = new ButtonTemplate("Sell", (x+width)-50-80,y+350,50,30,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().sell(3);
+            }
+        };
+
+        buyRettigSeed = new ButtonTemplate("Buy", (x+width)-20-50,y+350,50,30,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().buy(3);
+            }
+        };
+
+
+        sellAll = new ButtonTemplate("Sell All", x+20,y+height-100,width-40,50,20,false) {
+            @Override
+            void onClick() {
+                controll.getShop().sellAll();
+            }
+        };
+
+        arrayShopButton.add(sellAll);
+        arrayShopButton.add(sellAnanasSeed);
+        arrayShopButton.add(buyAnanasSeed);
+
+        arrayShopButton.add(buyGurkenSeed);
+        arrayShopButton.add(sellGurkenSeed);
+
+        arrayShopButton.add(sellRettigSeed);
+        arrayShopButton.add(buyRettigSeed);
     }
 
     private void initStartmenue(int sizeX,int sizeY) {

@@ -69,6 +69,12 @@ public class Images {
     private static Image rettig1  = getSizedImage(Paths.pRettig1,40  ,40);
     private static Image rettig2  = getSizedImage(Paths.pRettig2,40  ,40);
 
+    //SHOP
+
+    private static Image aSamenS  = getSizedImage(Paths.pSamenAnanas,100,100);
+    private static Image gSamenS  = getSizedImage(Paths.pSamenGurke,100,100);
+    private static Image rSamenS  = getSizedImage(Paths.pSamenRettig,100,100);
+
 
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
         Image changedImage = null; // Image smalling
@@ -79,6 +85,18 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getaSamenS() {
+        return aSamenS;
+    }
+
+    public static Image getgSamenS() {
+        return gSamenS;
+    }
+
+    public static Image getrSamenS() {
+        return rSamenS;
     }
 
     public static Image getaSamen() {

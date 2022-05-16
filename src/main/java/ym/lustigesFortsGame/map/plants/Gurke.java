@@ -5,6 +5,7 @@ import ym.lustigesFortsGame.Objekt.Player;
 import ym.lustigesFortsGame.utils.Images;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Gurke extends Plant{
 
@@ -20,7 +21,7 @@ public class Gurke extends Plant{
 
         this.xFeld = x;
         this.yFeld = y;
-        this.growingSpeed = 1000;
+        this.growingSpeed = 6000;
         growing();
     }
 
@@ -32,8 +33,19 @@ public class Gurke extends Plant{
 
     @Override
     public void harvest(Player spieler) {
+        int seed = 0;
+
+        Random random = new Random();
+        int value = random.nextInt(1 + 10) + 1;
+
+        if(value > 7){
+            seed = 1;
+        }
+        if(value > 9){
+            seed = 2;
+        }
         spieler.setGurke(spieler.getGurke()+1);
-        spieler.setGurkenSamen(spieler.getGurkenSamen()+2);
+        spieler.setGurkenSamen(spieler.getGurkenSamen()+seed);
         controll.getMap().getPlants().remove(this);
     }
 }

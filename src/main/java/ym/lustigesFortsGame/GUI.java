@@ -26,6 +26,7 @@ public class GUI extends JFrame implements Runnable {
     private Controll controll;
 
     private boolean ingame = false;
+    private boolean start = true;
 
 
     private Image backGroundImage ;
@@ -62,7 +63,7 @@ public class GUI extends JFrame implements Runnable {
 
         }
         //---------------------------Start---------------------------
-        if(!ingame) {
+        if(start) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF); // Keine Ahnung mit Funktionierts
             Toolkit.getDefaultToolkit().sync();
@@ -90,27 +91,24 @@ public class GUI extends JFrame implements Runnable {
         if(ingame) {
 
 
-            //------------------------------------MAP-----------------------------
-
-            //Hintergrund
-            dbg.setColor(Color.black);
-            dbg.fillRect(0, 0, getSIZEX(), getSIZEY());
-
-
+            //--------MAP-------
+            dbg.setColor(Color.white);
+            dbg = controll.getMap().draw(dbg);
 
 
 
             //----Spieler----
-            dbg.setColor(Color.white);
-            dbg = controll.getMap().draw(dbg);
             dbg = controll.getSpieler1().draw(dbg);
 
 
+            //Playtime
+            dbg = controll.getPlaytime().Draw(dbg);
+
+            //Shop
+            dbg = controll.getShop().draw(dbg);
+
+            //Inventar
             dbg = controll.getInventar().draw(dbg);
-
-
-
-
         }
 
 
@@ -121,6 +119,10 @@ public class GUI extends JFrame implements Runnable {
     public void addListerner(){
         addKeyListener(new KeyListeners(controll));
         for (ButtonTemplate button : controll.getInitButtons().getStartbuttons()){
+            addMouseMotionListener(button);
+            addMouseListener(button);
+        }
+        for (ButtonTemplate button : controll.getShop().getShopButtons()){
             addMouseMotionListener(button);
             addMouseListener(button);
         }

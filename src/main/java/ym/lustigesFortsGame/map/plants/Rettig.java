@@ -18,7 +18,7 @@ public class Rettig extends Plant{
 
         this.xFeld = x;
         this.yFeld = y;
-        this.growingSpeed = 1000;
+        this.growingSpeed = 4000;
         growing();
     }
 
@@ -33,8 +33,21 @@ public class Rettig extends Plant{
 
     @Override
     public void  harvest(Player spieler) {
+        int seed = 0;
+
+        Random random = new Random();
+        int value = random.nextInt(1 + 10) + 1;
+
+        if(value > 5){
+            seed = 1;
+        }
+        if(value > 9){
+            seed = 2;
+        }
+
+
         spieler.setRettig(spieler.getRettig()+1);
-        spieler.setRettigSamen(spieler.getRettigSamen()+2);
+        spieler.setRettigSamen(spieler.getRettigSamen()+seed);
         controll.getMap().getPlants().remove(this);
 
     }

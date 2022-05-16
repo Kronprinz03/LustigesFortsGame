@@ -61,7 +61,7 @@ public class Player {
     private int tool = 1;
     private boolean harvesting = false;
 
-    private int maxDrop = 10;
+    private int maxDrop = 2;
     private int minDrop = 1;
 
     //Objekte
@@ -147,10 +147,12 @@ public class Player {
             @Override
             public void run() {
                 setHarvesting(true);
-                Thread.sleep(100);
+                Thread.sleep(500);
                 setHarvesting(false);
+
             }
-        }).run();
+        }).start();
+
         int mapObjekt = controll.getMap().getMap(xFeld,yFeld);
         if(mapObjekt == 0){
             int overlayObjekt = controll.getMap().getOverlay(xFeld,yFeld);

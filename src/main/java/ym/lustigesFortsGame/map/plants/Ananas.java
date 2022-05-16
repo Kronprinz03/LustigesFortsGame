@@ -19,7 +19,7 @@ public class Ananas extends Plant{
 
         this.xFeld = x;
         this.yFeld = y;
-        this.growingSpeed = 1000;
+        this.growingSpeed = 12000;
         this.grown = 0;
         growing();
     }
