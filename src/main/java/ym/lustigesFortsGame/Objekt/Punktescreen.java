@@ -154,10 +154,15 @@ public class Punktescreen {
     public void aufrufenPunktescreeen(){
         if(aktive){
             aktive = false;
+            if(!(returnMenue == null)){
+                returnMenue.setAktive(false);
+            }
+
         }else {
             aktive = true;
             returnMenue = controll.getInitButtons().returnMenue();
-            controll.getGui().addMous();
+            controll.getGui().addMous(returnMenue);
+            returnMenue.setAktive(true);
             controll.setIngame(false);
             controll.getShop().sellAll();
             berechnePunkte();

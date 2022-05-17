@@ -169,7 +169,7 @@ public class InitButtons {
 
     public ButtonTemplate returnMenue(){
         Punktescreen p = controll.getPunktescreen();
-        returnMenue = new ButtonTemplate("Hauptmenü",p.getX()+ 30,p.getY()+500,p.getWidth()-60,50,30,true) {
+        returnMenue = new ButtonTemplate("Hauptmenü",p.getX()+ 30,p.getY()+500,p.getWidth()-60,50,30,false) {
             @Override
             void onClick() {
                 controll.beendeSpiel();

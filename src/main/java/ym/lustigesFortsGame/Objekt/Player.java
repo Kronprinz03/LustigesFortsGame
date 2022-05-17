@@ -136,7 +136,7 @@ public class Player {
     } // Schaut ob der Spieler laufen kann
 
     public void theHarvest(){
-        if(energy > 4) {
+        if(energy > 4 && (controll.isIngame())&&!(controll.isPause())) {
 
             int xFeld = (getPosX() + (getWidth() / 2)) / 40;
             int yFeld = (getPosY() + getHeight() / 2) / 40;
@@ -190,6 +190,7 @@ public class Player {
     } // Ablauf wenn der Spieler Axt oder Tool benutzt
 
     public void plant(){
+        if(!(controll.isPause()) && controll.isIngame()){
         int xFeld = (getPosX()+(getWidth()/2))/40;
         int yFeld = (getPosY()+getHeight()/2)/40;
 
@@ -230,6 +231,7 @@ public class Player {
                         setGurkenSamen(getGurkenSamen() - 1);
                     }
                     break;
+                }
             }
         }
     }

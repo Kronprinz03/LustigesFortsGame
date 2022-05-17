@@ -55,7 +55,7 @@ private int wqerw = 0;
     @Override
     public void run() {
             while (index < countdown) {
-                if(controll.isIngame()) {
+                if(controll.isIngame()&& !(controll.isPause())) {
                     Thread.sleep(1000);
                     index++;
                 }else {

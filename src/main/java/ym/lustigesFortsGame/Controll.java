@@ -9,6 +9,7 @@ import ym.lustigesFortsGame.Clocks.Playtime;
 import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.Objekt.Button.InitButtons;
 import ym.lustigesFortsGame.Objekt.Inventar.Inventar;
+import ym.lustigesFortsGame.Objekt.Pause;
 import ym.lustigesFortsGame.Objekt.Player;
 import ym.lustigesFortsGame.Objekt.Punktescreen;
 import ym.lustigesFortsGame.Objekt.Shop;
@@ -30,6 +31,7 @@ private File collision = null;
 private Inventar inventar;
 private Shop shop;
 private Punktescreen punktescreen;
+private Pause diePause;
 
 
 
@@ -77,6 +79,7 @@ private boolean start = true;
 
 
 
+
     }
 
     //Start Einstellungen
@@ -88,7 +91,7 @@ private boolean start = true;
             button.setAktive(false);
         }
 
-        playtime = new Playtime(10,this,0,1240);
+        playtime = new Playtime(200,this,0,1240);
         playtime.start();
         energyClock = new EnergyClock(this);
         energyClock.start();
@@ -113,6 +116,7 @@ private boolean start = true;
         spieler1.setIngRettig(0);
         spieler1.setIngBaum(0);
 
+        diePause = new Pause(sizeX/2 - 250,50,500,sizeY-100,this);
         getGui().setIngame(true);
 
 
@@ -123,8 +127,11 @@ private boolean start = true;
     public void beendeSpiel(){
         ingame = false;
         start = true;
+        playtime.stop();
         gui.setIngame(false);
         gui.setStart(true);
+
+        pause = false;
 
 
 

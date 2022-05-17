@@ -19,7 +19,7 @@ private Controll controll;
     public void run() {
 
             while (true) {
-                if (controll.isIngame()) {
+                if (controll.isIngame()&&!(controll.isPause())) {
                 //-------------Movement Spieler-----------------
                 if (!spieler1.isHarvesting()) {
                     if (isMoveOkay()) {

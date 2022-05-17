@@ -22,7 +22,7 @@ public class AnimationClock extends Thread{
 
             int count = 0;
             while (true) {
-                if (controll.isIngame()) {
+                if (controll.isIngame()&&!(controll.isPause())) {
                     if (!spieler1.isHarvesting()) {
                         System.out.println();
                         if (spieler1.getMovment() == Movment.nachlinks) {

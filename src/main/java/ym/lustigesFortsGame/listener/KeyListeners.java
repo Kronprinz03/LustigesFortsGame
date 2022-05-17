@@ -30,11 +30,7 @@ public class KeyListeners implements KeyListener {
         if (controll.getGui().isIngame()) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_ESCAPE:
-                    if (controll.isPause()) {
-                        controll.setPause(false);
-                    } else {
-                        controll.setPause(true);
-                    }
+                    controll.getDiePause().aufrufPause();
                     break;
 
                 case KeyEvent.VK_W:

@@ -113,6 +113,9 @@ public class GUI extends JFrame implements Runnable {
             //Punktescreen
             dbg = controll.getPunktescreen().draw(dbg);
 
+            //Pause
+            dbg = controll.getDiePause().draw(dbg);
+
         }
 
 
@@ -132,8 +135,7 @@ public class GUI extends JFrame implements Runnable {
         }
     }
 
-    public void addMous(){
-        ButtonTemplate b = controll.getPunktescreen().getReturnMenue();
+    public void addMous(ButtonTemplate b){
         addMouseMotionListener(b);
         addMouseListener(b);
     }
