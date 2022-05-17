@@ -15,8 +15,8 @@ public class KeyListeners implements KeyListener {
     private Controll controll;
     private boolean imageLoaded = false;
 
-    public KeyListeners(Controll controll){
-         this.controll = controll;
+    public KeyListeners(Controll controll) {
+        this.controll = controll;
     }
 
 
@@ -27,7 +27,7 @@ public class KeyListeners implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(controll.getGui().isIngame()) {
+        if (controll.getGui().isIngame()) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_ESCAPE:
                     if (controll.isPause()) {
@@ -95,73 +95,79 @@ public class KeyListeners implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_W:
-                controll.getSpieler1().setMovment(Movment.stop);
-                imageLoaded = false;
-        }
+        if (controll.isIngame()) {
 
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_W:
+                    controll.getSpieler1().setMovment(Movment.stop);
+                    imageLoaded = false;
+            }
+        }
 
     }
 
     // taste :  1 = D / 2 = S / 3 = A
-    public Direaction switchDireaction(int taste){
+    public Direaction switchDireaction(int taste) {
 
-        Direaction direaction = controll.getSpieler1().getDireaction();
-        Direaction nextDireaction = null;
+            Direaction direaction = controll.getSpieler1().getDireaction();
+            Direaction nextDireaction = null;
 
+        if (controll.isIngame()) {
+            if (direaction == Direaction.oben) {
+                switch (taste) {
+                    case 1:
+                        nextDireaction = Direaction.rechts;
+                        break;
+                    case 2:
+                        nextDireaction = Direaction.unten;
+                        break;
+                    case 3:
+                        nextDireaction = Direaction.links;
+                        break;
+                }
+            } else if (direaction == Direaction.unten) {
+                switch (taste) {
+                    case 1:
+                        nextDireaction = Direaction.links;
+                        break;
+                    case 2:
+                        nextDireaction = Direaction.oben;
+                        break;
+                    case 3:
+                        nextDireaction = Direaction.rechts;
+                        break;
+                }
+            } else if (direaction == Direaction.rechts) {
+                switch (taste) {
+                    case 1:
+                        nextDireaction = Direaction.unten;
+                        break;
+                    case 2:
+                        nextDireaction = Direaction.links;
+                        break;
+                    case 3:
+                        nextDireaction = Direaction.oben;
+                        break;
+                }
+            } else {
+                switch (taste) {
+                    case 1:
+                        nextDireaction = Direaction.oben;
+                        break;
+                    case 2:
+                        nextDireaction = Direaction.rechts;
+                        break;
+                    case 3:
+                        nextDireaction = Direaction.unten;
+                        break;
+                }
+            }
 
-        if(direaction == Direaction.oben){
-            switch (taste){
-                case 1:
-                    nextDireaction = Direaction.rechts;
-                    break;
-                case 2:
-                    nextDireaction = Direaction.unten;
-                    break;
-                case 3:
-                    nextDireaction = Direaction.links;
-                    break;
-            }
-        }else if (direaction == Direaction.unten){
-            switch (taste){
-                case 1:
-                    nextDireaction = Direaction.links;
-                    break;
-                case 2:
-                    nextDireaction = Direaction.oben;
-                    break;
-                case 3:
-                    nextDireaction = Direaction.rechts;
-                    break;
-            }
-        }else if(direaction == Direaction.rechts){
-            switch (taste){
-                case 1:
-                    nextDireaction = Direaction.unten;
-                    break;
-                case 2:
-                    nextDireaction = Direaction.links;
-                    break;
-                case 3:
-                    nextDireaction = Direaction.oben;
-                    break;
-            }
-        }else {
-            switch (taste){
-                case 1:
-                    nextDireaction = Direaction.oben;
-                    break;
-                case 2:
-                    nextDireaction = Direaction.rechts;
-                    break;
-                case 3:
-                    nextDireaction = Direaction.unten;
-                    break;
-            }
         }
         return nextDireaction;
     }
+
+
 
     public void setMovmentSpieler() {
 

@@ -47,6 +47,7 @@ public class Rettig extends Plant{
 
 
         spieler.setRettig(spieler.getRettig()+1);
+        spieler.setIngRettig(spieler.getIngRettig()+1);
         spieler.setRettigSamen(spieler.getRettigSamen()+seed);
         controll.getMap().getPlants().remove(this);
 

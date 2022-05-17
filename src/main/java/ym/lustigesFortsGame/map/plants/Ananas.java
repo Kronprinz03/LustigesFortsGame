@@ -34,6 +34,7 @@ public class Ananas extends Plant{
     @Override
     public void harvest(Player spieler) {
         spieler.setAnanas(spieler.getAnanas()+1);
+        spieler.setIngAnanas(spieler.getIngAnanas()+1);
         grown = 2;
         growing();
 

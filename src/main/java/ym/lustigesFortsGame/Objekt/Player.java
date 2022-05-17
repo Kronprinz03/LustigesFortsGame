@@ -44,22 +44,28 @@ public class Player {
 
     //Inventar
     private int rettig = 0;
+    private int ingRettig = 0;
     private int rettigSamen = 1;
 
     private int ananas = 0;
+    private int ingAnanas;
     private int ananasSamen = 1;
 
     private int gurke = 0;
+    private int ingGurke = 0;
     private int gurkenSamen = 1;
 
     private int seedOpt;
 
     private int baum = 0;
+    private int ingBaum = 0;
 
     //Attribut
     private Image laufImage = null;
     private int tool = 1;
     private boolean harvesting = false;
+
+    private int energy = 100;
 
     private int maxDrop = 2;
     private int minDrop = 1;
@@ -97,8 +103,16 @@ public class Player {
            dbg.drawImage(getLaufImage(),getPosX(),getPosY(),null);
        }
 
+       dbg.setColor(Color.white);
+       dbg.fillRect(1000,80,200,10);
+       dbg.setColor(Color.YELLOW);
+       dbg.fillRect((200-energy*2) + 1000,80,energy*2,10);
+
+
         return dbg;
     }
+
+
 
     public boolean isMoveOkay() {
 
@@ -122,58 +136,54 @@ public class Player {
     } // Schaut ob der Spieler laufen kann
 
     public void theHarvest(){
-        int xFeld = (getPosX()+(getWidth()/2))/40;
-        int yFeld = (getPosY()+getHeight()/2)/40;
+        if(energy > 4) {
 
-        if(direaction == Direaction.oben){
-            yFeld--;
-        }
-        if(direaction == Direaction.links){
-            xFeld--;
-        }
-        if(direaction == Direaction.rechts){
-            xFeld++;
-        }
-        if(direaction == Direaction.unten){
-            yFeld++;
-        }
+            int xFeld = (getPosX() + (getWidth() / 2)) / 40;
+            int yFeld = (getPosY() + getHeight() / 2) / 40;
 
-        harvestY = yFeld;
-        harvestX = xFeld;
-
-
-        new Thread(new Runnable() {
-            @SneakyThrows
-            @Override
-            public void run() {
-                setHarvesting(true);
-                Thread.sleep(500);
-                setHarvesting(false);
-
+            if (direaction == Direaction.oben) {
+                yFeld--;
             }
-        }).start();
-
-        int mapObjekt = controll.getMap().getMap(xFeld,yFeld);
-        if(mapObjekt == 0){
-            int overlayObjekt = controll.getMap().getOverlay(xFeld,yFeld);
-            if((overlayObjekt == 0) && (getTool() == 2)){
-                controll.getMap().setOverlay(xFeld,yFeld,4);
+            if (direaction == Direaction.links) {
+                xFeld--;
+            }
+            if (direaction == Direaction.rechts) {
+                xFeld++;
+            }
+            if (direaction == Direaction.unten) {
+                yFeld++;
             }
 
-            if(((overlayObjekt == 1) || (overlayObjekt == 2)) &&(getTool() == 1)) {
-                Random r = new Random();
-                int value = r.nextInt(minDrop+maxDrop)+minDrop;
-                baum = baum +value;
-                controll.getMap().setOverlay(xFeld,yFeld,0);
-                controll.getMap().setInputCollision(xFeld,yFeld,0);
-            }
-            for(int i = 0; i < controll.getMap().getPlants().size(); i++){
-                Plant plant = controll.getMap().getPlants().get(i);
-                int plX = plant.getXFeld();
-                int plY = plant.getYFeld();
+            harvestY = yFeld;
+            harvestX = xFeld;
 
-                if((plX == xFeld) && (plY == yFeld) && (plant.isFinish())){
-                    plant.harvest(this);
+
+            energy = energy - 5;
+
+
+            int mapObjekt = controll.getMap().getMap(xFeld, yFeld);
+            if (mapObjekt == 0) {
+                int overlayObjekt = controll.getMap().getOverlay(xFeld, yFeld);
+                if ((overlayObjekt == 0) && (getTool() == 2)) {
+                    controll.getMap().setOverlay(xFeld, yFeld, 4);
+                }
+
+                if (((overlayObjekt == 1) || (overlayObjekt == 2)) && (getTool() == 1)) {
+                    Random r = new Random();
+                    int value = r.nextInt(minDrop + maxDrop) + minDrop;
+                    baum = baum + value;
+                    ingBaum = ingBaum + value;
+                    controll.getMap().setOverlay(xFeld, yFeld, 0);
+                    controll.getMap().setInputCollision(xFeld, yFeld, 0);
+                }
+                for (int i = 0; i < controll.getMap().getPlants().size(); i++) {
+                    Plant plant = controll.getMap().getPlants().get(i);
+                    int plX = plant.getXFeld();
+                    int plY = plant.getYFeld();
+
+                    if ((plX == xFeld) && (plY == yFeld) && (plant.isFinish())) {
+                        plant.harvest(this);
+                    }
                 }
             }
         }

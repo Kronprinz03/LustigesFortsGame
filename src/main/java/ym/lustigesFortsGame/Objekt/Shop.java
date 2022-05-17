@@ -90,7 +90,9 @@ public class Shop {
         Font font2 = new Font("Tahoma", Font.PLAIN, 20);
         dbg.setFont(font2);
         int textwidth = (int) (font2.getStringBounds(Integer.toString(geld), frc).getWidth()); // Breite der Schrift
-        dbg.drawString(Integer.toString(geld),controll.getSizeX()-50-textwidth,50);
+
+        dbg.drawString(Integer.toString(geld),(controll.getSizeX()-70)-textwidth,60);
+        dbg.drawImage(Images.getGeld(),controll.getSizeX()-70,42, null);
 
         return dbg;
     }

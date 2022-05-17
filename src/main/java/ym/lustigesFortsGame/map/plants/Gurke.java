@@ -45,6 +45,7 @@ public class Gurke extends Plant{
             seed = 2;
         }
         spieler.setGurke(spieler.getGurke()+1);
+        spieler.setIngGurke(spieler.getIngGurke()+1);
         spieler.setGurkenSamen(spieler.getGurkenSamen()+seed);
         controll.getMap().getPlants().remove(this);
     }

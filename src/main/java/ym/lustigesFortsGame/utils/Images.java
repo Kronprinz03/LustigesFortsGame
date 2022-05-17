@@ -75,6 +75,8 @@ public class Images {
     private static Image gSamenS  = getSizedImage(Paths.pSamenGurke,100,100);
     private static Image rSamenS  = getSizedImage(Paths.pSamenRettig,100,100);
 
+    private static Image geld = getSizedImage(Paths.pGeld,40,26);
+
 
     public static Image getSizedImage(File file, int SizeX, int SizeY) {
         Image changedImage = null; // Image smalling
@@ -85,6 +87,10 @@ public class Images {
             System.out.println("BILD WURDE NICHT GEFUNDEN!");
         }
         return changedImage;
+    }
+
+    public static Image getGeld() {
+        return geld;
     }
 
     public static Image getaSamenS() {

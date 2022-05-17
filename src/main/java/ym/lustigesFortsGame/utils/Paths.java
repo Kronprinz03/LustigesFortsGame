@@ -70,4 +70,6 @@ public class Paths {
     public static File pGurke1 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Gurke1.png");
     public static File pGurke2 = new File("src/main/java/ym/lustigesFortsGame/picture/plants/farming/Gurke2.png");
 
+    public static File pGeld = new File("src/main/java/ym/lustigesFortsGame/picture/geld.png");
+
 }

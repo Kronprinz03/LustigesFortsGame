@@ -62,6 +62,7 @@ private int wqerw = 0;
                     System.out.println();
                 }
             }
-            controll.beendeSpiel();
+            countdown = index;
+            controll.getPunktescreen().aufrufenPunktescreeen();
     }
 }

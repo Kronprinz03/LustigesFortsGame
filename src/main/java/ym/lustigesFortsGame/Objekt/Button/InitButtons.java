@@ -2,12 +2,12 @@ package ym.lustigesFortsGame.Objekt.Button;
 
 import lombok.Getter;
 import ym.lustigesFortsGame.Controll;
+import ym.lustigesFortsGame.Objekt.Punktescreen;
 
 import java.util.ArrayList;
-
+@Getter
 public class InitButtons {
 
-    @Getter
 
     //-----------------Buttons-------------------
     private ArrayList <ButtonTemplate> startbuttons = new ArrayList<>();
@@ -41,7 +41,7 @@ public class InitButtons {
         getMid(sizeX,sizeY);
 
 
-        //---------------------------Buttons fürs Startmenü-----------------------------------
+        //---------------------------Buttons fürs Startmenü-----------------
         initStartmenue(sizeX,sizeY);
 
 
@@ -49,7 +49,7 @@ public class InitButtons {
         initShopButton();
 
 
-
+        //-------------------------Button für Endscreen---------------------
 
 
     }
@@ -165,6 +165,19 @@ public class InitButtons {
     private void getMid(int sizeX, int sizeY){
         midX = sizeX /2;
         midY = sizeY /2;
+    }
+
+    public ButtonTemplate returnMenue(){
+        Punktescreen p = controll.getPunktescreen();
+        returnMenue = new ButtonTemplate("Hauptmenü",p.getX()+ 30,p.getY()+500,p.getWidth()-60,50,30,true) {
+            @Override
+            void onClick() {
+                controll.beendeSpiel();
+                aktive = false;
+            }
+        };
+
+        return returnMenue;
     }
 
     public ButtonTemplate getLocalButton() {

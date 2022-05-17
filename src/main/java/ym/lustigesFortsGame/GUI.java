@@ -109,6 +109,10 @@ public class GUI extends JFrame implements Runnable {
 
             //Inventar
             dbg = controll.getInventar().draw(dbg);
+
+            //Punktescreen
+            dbg = controll.getPunktescreen().draw(dbg);
+
         }
 
 
@@ -126,8 +130,14 @@ public class GUI extends JFrame implements Runnable {
             addMouseMotionListener(button);
             addMouseListener(button);
         }
-
     }
+
+    public void addMous(){
+        ButtonTemplate b = controll.getPunktescreen().getReturnMenue();
+        addMouseMotionListener(b);
+        addMouseListener(b);
+    }
+
 
     @Override
     public void run() {

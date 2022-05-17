@@ -3,12 +3,14 @@ package ym.lustigesFortsGame;
 import lombok.Getter;
 import lombok.Setter;
 import ym.lustigesFortsGame.Clocks.AnimationClock;
+import ym.lustigesFortsGame.Clocks.EnergyClock;
 import ym.lustigesFortsGame.Clocks.MoveClock;
 import ym.lustigesFortsGame.Clocks.Playtime;
 import ym.lustigesFortsGame.Objekt.Button.ButtonTemplate;
 import ym.lustigesFortsGame.Objekt.Button.InitButtons;
 import ym.lustigesFortsGame.Objekt.Inventar.Inventar;
 import ym.lustigesFortsGame.Objekt.Player;
+import ym.lustigesFortsGame.Objekt.Punktescreen;
 import ym.lustigesFortsGame.Objekt.Shop;
 import ym.lustigesFortsGame.map.Map;
 
@@ -27,6 +29,7 @@ private Map map;
 private File collision = null;
 private Inventar inventar;
 private Shop shop;
+private Punktescreen punktescreen;
 
 
 
@@ -34,6 +37,7 @@ private Shop shop;
 private MoveClock moveClock;
 private AnimationClock animationClock;
 private Playtime playtime;
+private EnergyClock energyClock;
 
 //Variblen
 private int sizeX = 1240;
@@ -53,7 +57,6 @@ private boolean start = true;
 
         moveClock.start();
         animationClock.start();
-        playtime.start();
         Thread GUI = new Thread (gui);
         GUI.start();
 
@@ -69,7 +72,7 @@ private boolean start = true;
         moveClock = new MoveClock(spieler1,this);
         animationClock = new AnimationClock(this);
         inventar = new Inventar(sizeX-160,sizeY-200,120,160,this);
-        playtime = new Playtime(5,this,0,1240);
+
 
 
 
@@ -85,12 +88,31 @@ private boolean start = true;
             button.setAktive(false);
         }
 
-        playtime.setCountdown(600);
+        playtime = new Playtime(10,this,0,1240);
+        playtime.start();
+        energyClock = new EnergyClock(this);
+        energyClock.start();
+
+        punktescreen = new Punktescreen(sizeX/2 - 250,50,500,sizeY-100,this);
+
+        map.loadMap();
+        map.loadOverlay();
+        map.loadCollision();
 
         shop.setGeld(0);
+        spieler1.setPosX(sizeX/2-25/2);
+        spieler1.setPosY(sizeY/2+25/2);
         spieler1.setRettigSamen(1);
         spieler1.setGurkenSamen(0);
         spieler1.setAnanasSamen(0);
+        spieler1.setEnergy(100);
+        spieler1.setBaum(0);
+
+        spieler1.setIngAnanas(0);
+        spieler1.setIngGurke(0);
+        spieler1.setIngRettig(0);
+        spieler1.setIngBaum(0);
+
         getGui().setIngame(true);
 
 
@@ -99,7 +121,6 @@ private boolean start = true;
 
     //Beende Spiel
     public void beendeSpiel(){
-        shop.sellAll();
         ingame = false;
         start = true;
         gui.setIngame(false);

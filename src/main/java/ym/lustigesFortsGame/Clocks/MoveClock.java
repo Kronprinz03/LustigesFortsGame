@@ -19,7 +19,7 @@ private Controll controll;
     public void run() {
 
             while (true) {
-                if (controll.getGui().isIngame()) {
+                if (controll.isIngame()) {
                 //-------------Movement Spieler-----------------
                 if (!spieler1.isHarvesting()) {
                     if (isMoveOkay()) {
