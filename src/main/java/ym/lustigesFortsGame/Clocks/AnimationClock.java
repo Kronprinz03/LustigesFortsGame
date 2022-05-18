@@ -24,7 +24,6 @@ public class AnimationClock extends Thread{
             while (true) {
                 if (controll.isIngame()&&!(controll.isPause())) {
                     if (!spieler1.isHarvesting()) {
-                        System.out.println();
                         if (spieler1.getMovment() == Movment.nachlinks) {
                             if (count == 0) {
                                 spieler1.setLaufImage(Images.getLinks2());
@@ -62,6 +61,8 @@ public class AnimationClock extends Thread{
                     } else {
                         spieler1.setMovment(Movment.stop);
                     }
+                }else {
+                    System.out.println();
                 }
 
             }

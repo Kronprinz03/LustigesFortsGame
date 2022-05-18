@@ -128,11 +128,12 @@ private boolean start = true;
         ingame = false;
         start = true;
         playtime.stop();
+        energyClock.stop();
         gui.setIngame(false);
         gui.setStart(true);
-
         pause = false;
 
+        getMap().getPlants().clear();
 
 
         for (ButtonTemplate button : getInitButtons().getStartbuttons()){
